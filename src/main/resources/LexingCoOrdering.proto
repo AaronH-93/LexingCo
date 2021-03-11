@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "grpc.services.LexingCoOrdering";
+option java_outer_classname = "LexingCoOrderingServiceImpl";
+
+package LexingCo;
+
+service LexingCoOrderingService{
+  rpc sendMessage(MessageRequest) returns (MessageReply){}
+
+}
+
+message MessageRequest{
+  string text = 1;
+}
+
+message MessageReply{
+  string text = 2;
+}
