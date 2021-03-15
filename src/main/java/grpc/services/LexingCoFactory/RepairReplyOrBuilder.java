@@ -3,16 +3,16 @@
 
 package grpc.services.LexingCoFactory;
 
-public interface MessageReplyOrBuilder extends
-    // @@protoc_insertion_point(interface_extends:LexingCo.MessageReply)
+public interface RepairReplyOrBuilder extends
+    // @@protoc_insertion_point(interface_extends:LexingCo.RepairReply)
     com.google.protobuf.MessageOrBuilder {
 
   /**
-   * <code>string text = 2;</code>
+   * <code>string text = 4;</code>
    */
   java.lang.String getText();
   /**
-   * <code>string text = 2;</code>
+   * <code>string text = 4;</code>
    */
   com.google.protobuf.ByteString
       getTextBytes();

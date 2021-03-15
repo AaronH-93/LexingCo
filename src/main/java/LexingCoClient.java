@@ -1,6 +1,6 @@
+import grpc.services.LexingCoFactory.BuildReply;
+import grpc.services.LexingCoFactory.BuildRequest;
 import grpc.services.LexingCoFactory.LexingCoFactoryServiceGrpc;
-import grpc.services.LexingCoFactory.MessageReply;
-import grpc.services.LexingCoFactory.MessageRequest;
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
 
@@ -44,14 +44,23 @@ public class LexingCoClient implements ServiceListener {
     @Override
     public void serviceResolved(ServiceEvent event) {
         System.out.println("Service resolved: " + event.getInfo());
-        sendMessage(event.getInfo().getHostAddresses()[0], event.getInfo().getPort());
+        //Ideally we will determine what function to use from here in the GUI
+        buildCar(event.getInfo().getHostAddresses()[0], event.getInfo().getPort());
     }
 
-    private void sendMessage(String host, int port) {
+    private void buildCar(String host, int port) {
         ManagedChannel channel = ManagedChannelBuilder.forAddress(host, port).usePlaintext().build();
         blockStub = LexingCoFactoryServiceGrpc.newBlockingStub(channel);
-        MessageRequest request = MessageRequest.newBuilder().build();
-        MessageReply reply = blockStub.sendMessage(request);
-        System.out.println("The reply was " + reply.getText());
+        BuildRequest request = BuildRequest.newBuilder().build();
+        BuildReply reply = blockStub.buildCar(request);
+        System.out.println("Building car! " + reply.getText());
+    }
+
+    private void repairCar(String host, int port) {
+        ManagedChannel channel = ManagedChannelBuilder.forAddress(host, port).usePlaintext().build();
+        blockStub = LexingCoFactoryServiceGrpc.newBlockingStub(channel);
+        BuildRequest request = BuildRequest.newBuilder().build();
+        BuildReply reply = blockStub.buildCar(request);
+        System.out.println("Repairing Car " + reply.getText());
     }
 }

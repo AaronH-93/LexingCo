@@ -27,36 +27,68 @@ public final class LexingCoFactoryServiceGrpc {
   public static final String SERVICE_NAME = "LexingCo.LexingCoFactoryService";
 
   // Static method descriptors that strictly reflect the proto.
-  private static volatile io.grpc.MethodDescriptor<grpc.services.LexingCoFactory.MessageRequest,
-      grpc.services.LexingCoFactory.MessageReply> getSendMessageMethod;
+  private static volatile io.grpc.MethodDescriptor<grpc.services.LexingCoFactory.BuildRequest,
+      grpc.services.LexingCoFactory.BuildReply> getBuildCarMethod;
 
   @io.grpc.stub.annotations.RpcMethod(
-      fullMethodName = SERVICE_NAME + '/' + "sendMessage",
-      requestType = grpc.services.LexingCoFactory.MessageRequest.class,
-      responseType = grpc.services.LexingCoFactory.MessageReply.class,
+      fullMethodName = SERVICE_NAME + '/' + "buildCar",
+      requestType = grpc.services.LexingCoFactory.BuildRequest.class,
+      responseType = grpc.services.LexingCoFactory.BuildReply.class,
       methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
-  public static io.grpc.MethodDescriptor<grpc.services.LexingCoFactory.MessageRequest,
-      grpc.services.LexingCoFactory.MessageReply> getSendMessageMethod() {
-    io.grpc.MethodDescriptor<grpc.services.LexingCoFactory.MessageRequest, grpc.services.LexingCoFactory.MessageReply> getSendMessageMethod;
-    if ((getSendMessageMethod = LexingCoFactoryServiceGrpc.getSendMessageMethod) == null) {
+  public static io.grpc.MethodDescriptor<grpc.services.LexingCoFactory.BuildRequest,
+      grpc.services.LexingCoFactory.BuildReply> getBuildCarMethod() {
+    io.grpc.MethodDescriptor<grpc.services.LexingCoFactory.BuildRequest, grpc.services.LexingCoFactory.BuildReply> getBuildCarMethod;
+    if ((getBuildCarMethod = LexingCoFactoryServiceGrpc.getBuildCarMethod) == null) {
       synchronized (LexingCoFactoryServiceGrpc.class) {
-        if ((getSendMessageMethod = LexingCoFactoryServiceGrpc.getSendMessageMethod) == null) {
-          LexingCoFactoryServiceGrpc.getSendMessageMethod = getSendMessageMethod = 
-              io.grpc.MethodDescriptor.<grpc.services.LexingCoFactory.MessageRequest, grpc.services.LexingCoFactory.MessageReply>newBuilder()
+        if ((getBuildCarMethod = LexingCoFactoryServiceGrpc.getBuildCarMethod) == null) {
+          LexingCoFactoryServiceGrpc.getBuildCarMethod = getBuildCarMethod = 
+              io.grpc.MethodDescriptor.<grpc.services.LexingCoFactory.BuildRequest, grpc.services.LexingCoFactory.BuildReply>newBuilder()
               .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
               .setFullMethodName(generateFullMethodName(
-                  "LexingCo.LexingCoFactoryService", "sendMessage"))
+                  "LexingCo.LexingCoFactoryService", "buildCar"))
               .setSampledToLocalTracing(true)
               .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  grpc.services.LexingCoFactory.MessageRequest.getDefaultInstance()))
+                  grpc.services.LexingCoFactory.BuildRequest.getDefaultInstance()))
               .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  grpc.services.LexingCoFactory.MessageReply.getDefaultInstance()))
-                  .setSchemaDescriptor(new LexingCoFactoryServiceMethodDescriptorSupplier("sendMessage"))
+                  grpc.services.LexingCoFactory.BuildReply.getDefaultInstance()))
+                  .setSchemaDescriptor(new LexingCoFactoryServiceMethodDescriptorSupplier("buildCar"))
                   .build();
           }
         }
      }
-     return getSendMessageMethod;
+     return getBuildCarMethod;
+  }
+
+  private static volatile io.grpc.MethodDescriptor<grpc.services.LexingCoFactory.RepairRequest,
+      grpc.services.LexingCoFactory.RepairReply> getRepairCarMethod;
+
+  @io.grpc.stub.annotations.RpcMethod(
+      fullMethodName = SERVICE_NAME + '/' + "repairCar",
+      requestType = grpc.services.LexingCoFactory.RepairRequest.class,
+      responseType = grpc.services.LexingCoFactory.RepairReply.class,
+      methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
+  public static io.grpc.MethodDescriptor<grpc.services.LexingCoFactory.RepairRequest,
+      grpc.services.LexingCoFactory.RepairReply> getRepairCarMethod() {
+    io.grpc.MethodDescriptor<grpc.services.LexingCoFactory.RepairRequest, grpc.services.LexingCoFactory.RepairReply> getRepairCarMethod;
+    if ((getRepairCarMethod = LexingCoFactoryServiceGrpc.getRepairCarMethod) == null) {
+      synchronized (LexingCoFactoryServiceGrpc.class) {
+        if ((getRepairCarMethod = LexingCoFactoryServiceGrpc.getRepairCarMethod) == null) {
+          LexingCoFactoryServiceGrpc.getRepairCarMethod = getRepairCarMethod = 
+              io.grpc.MethodDescriptor.<grpc.services.LexingCoFactory.RepairRequest, grpc.services.LexingCoFactory.RepairReply>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(
+                  "LexingCo.LexingCoFactoryService", "repairCar"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  grpc.services.LexingCoFactory.RepairRequest.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  grpc.services.LexingCoFactory.RepairReply.getDefaultInstance()))
+                  .setSchemaDescriptor(new LexingCoFactoryServiceMethodDescriptorSupplier("repairCar"))
+                  .build();
+          }
+        }
+     }
+     return getRepairCarMethod;
   }
 
   /**
@@ -88,20 +120,34 @@ public final class LexingCoFactoryServiceGrpc {
 
     /**
      */
-    public void sendMessage(grpc.services.LexingCoFactory.MessageRequest request,
-        io.grpc.stub.StreamObserver<grpc.services.LexingCoFactory.MessageReply> responseObserver) {
-      asyncUnimplementedUnaryCall(getSendMessageMethod(), responseObserver);
+    public void buildCar(grpc.services.LexingCoFactory.BuildRequest request,
+        io.grpc.stub.StreamObserver<grpc.services.LexingCoFactory.BuildReply> responseObserver) {
+      asyncUnimplementedUnaryCall(getBuildCarMethod(), responseObserver);
+    }
+
+    /**
+     */
+    public void repairCar(grpc.services.LexingCoFactory.RepairRequest request,
+        io.grpc.stub.StreamObserver<grpc.services.LexingCoFactory.RepairReply> responseObserver) {
+      asyncUnimplementedUnaryCall(getRepairCarMethod(), responseObserver);
     }
 
     @java.lang.Override public final io.grpc.ServerServiceDefinition bindService() {
       return io.grpc.ServerServiceDefinition.builder(getServiceDescriptor())
           .addMethod(
-            getSendMessageMethod(),
+            getBuildCarMethod(),
             asyncUnaryCall(
               new MethodHandlers<
-                grpc.services.LexingCoFactory.MessageRequest,
-                grpc.services.LexingCoFactory.MessageReply>(
-                  this, METHODID_SEND_MESSAGE)))
+                grpc.services.LexingCoFactory.BuildRequest,
+                grpc.services.LexingCoFactory.BuildReply>(
+                  this, METHODID_BUILD_CAR)))
+          .addMethod(
+            getRepairCarMethod(),
+            asyncUnaryCall(
+              new MethodHandlers<
+                grpc.services.LexingCoFactory.RepairRequest,
+                grpc.services.LexingCoFactory.RepairReply>(
+                  this, METHODID_REPAIR_CAR)))
           .build();
     }
   }
@@ -126,10 +172,18 @@ public final class LexingCoFactoryServiceGrpc {
 
     /**
      */
-    public void sendMessage(grpc.services.LexingCoFactory.MessageRequest request,
-        io.grpc.stub.StreamObserver<grpc.services.LexingCoFactory.MessageReply> responseObserver) {
+    public void buildCar(grpc.services.LexingCoFactory.BuildRequest request,
+        io.grpc.stub.StreamObserver<grpc.services.LexingCoFactory.BuildReply> responseObserver) {
       asyncUnaryCall(
-          getChannel().newCall(getSendMessageMethod(), getCallOptions()), request, responseObserver);
+          getChannel().newCall(getBuildCarMethod(), getCallOptions()), request, responseObserver);
+    }
+
+    /**
+     */
+    public void repairCar(grpc.services.LexingCoFactory.RepairRequest request,
+        io.grpc.stub.StreamObserver<grpc.services.LexingCoFactory.RepairReply> responseObserver) {
+      asyncUnaryCall(
+          getChannel().newCall(getRepairCarMethod(), getCallOptions()), request, responseObserver);
     }
   }
 
@@ -153,9 +207,16 @@ public final class LexingCoFactoryServiceGrpc {
 
     /**
      */
-    public grpc.services.LexingCoFactory.MessageReply sendMessage(grpc.services.LexingCoFactory.MessageRequest request) {
+    public grpc.services.LexingCoFactory.BuildReply buildCar(grpc.services.LexingCoFactory.BuildRequest request) {
       return blockingUnaryCall(
-          getChannel(), getSendMessageMethod(), getCallOptions(), request);
+          getChannel(), getBuildCarMethod(), getCallOptions(), request);
+    }
+
+    /**
+     */
+    public grpc.services.LexingCoFactory.RepairReply repairCar(grpc.services.LexingCoFactory.RepairRequest request) {
+      return blockingUnaryCall(
+          getChannel(), getRepairCarMethod(), getCallOptions(), request);
     }
   }
 
@@ -179,14 +240,23 @@ public final class LexingCoFactoryServiceGrpc {
 
     /**
      */
-    public com.google.common.util.concurrent.ListenableFuture<grpc.services.LexingCoFactory.MessageReply> sendMessage(
-        grpc.services.LexingCoFactory.MessageRequest request) {
+    public com.google.common.util.concurrent.ListenableFuture<grpc.services.LexingCoFactory.BuildReply> buildCar(
+        grpc.services.LexingCoFactory.BuildRequest request) {
       return futureUnaryCall(
-          getChannel().newCall(getSendMessageMethod(), getCallOptions()), request);
+          getChannel().newCall(getBuildCarMethod(), getCallOptions()), request);
+    }
+
+    /**
+     */
+    public com.google.common.util.concurrent.ListenableFuture<grpc.services.LexingCoFactory.RepairReply> repairCar(
+        grpc.services.LexingCoFactory.RepairRequest request) {
+      return futureUnaryCall(
+          getChannel().newCall(getRepairCarMethod(), getCallOptions()), request);
     }
   }
 
-  private static final int METHODID_SEND_MESSAGE = 0;
+  private static final int METHODID_BUILD_CAR = 0;
+  private static final int METHODID_REPAIR_CAR = 1;
 
   private static final class MethodHandlers<Req, Resp> implements
       io.grpc.stub.ServerCalls.UnaryMethod<Req, Resp>,
@@ -205,9 +275,13 @@ public final class LexingCoFactoryServiceGrpc {
     @java.lang.SuppressWarnings("unchecked")
     public void invoke(Req request, io.grpc.stub.StreamObserver<Resp> responseObserver) {
       switch (methodId) {
-        case METHODID_SEND_MESSAGE:
-          serviceImpl.sendMessage((grpc.services.LexingCoFactory.MessageRequest) request,
-              (io.grpc.stub.StreamObserver<grpc.services.LexingCoFactory.MessageReply>) responseObserver);
+        case METHODID_BUILD_CAR:
+          serviceImpl.buildCar((grpc.services.LexingCoFactory.BuildRequest) request,
+              (io.grpc.stub.StreamObserver<grpc.services.LexingCoFactory.BuildReply>) responseObserver);
+          break;
+        case METHODID_REPAIR_CAR:
+          serviceImpl.repairCar((grpc.services.LexingCoFactory.RepairRequest) request,
+              (io.grpc.stub.StreamObserver<grpc.services.LexingCoFactory.RepairReply>) responseObserver);
           break;
         default:
           throw new AssertionError();
@@ -270,7 +344,8 @@ public final class LexingCoFactoryServiceGrpc {
         if (result == null) {
           serviceDescriptor = result = io.grpc.ServiceDescriptor.newBuilder(SERVICE_NAME)
               .setSchemaDescriptor(new LexingCoFactoryServiceFileDescriptorSupplier())
-              .addMethod(getSendMessageMethod())
+              .addMethod(getBuildCarMethod())
+              .addMethod(getRepairCarMethod())
               .build();
         }
       }

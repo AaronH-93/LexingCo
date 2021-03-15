@@ -7,14 +7,22 @@ option java_outer_classname = "LexingCoFactoryServiceImpl";
 package LexingCo;
 
 service LexingCoFactoryService{
-  rpc sendMessage(MessageRequest) returns (MessageReply){}
-
+  rpc buildCar(BuildRequest) returns (BuildReply){}
+  rpc repairCar(RepairRequest) returns (RepairReply){}
 }
 
-message MessageRequest{
+message BuildRequest{
   string text = 1;
 }
 
-message MessageReply{
+message BuildReply{
   string text = 2;
+}
+
+message RepairRequest{
+  string text = 3;
+}
+
+message RepairReply{
+  string text = 4;
 }

@@ -15,15 +15,25 @@ public final class LexingCoFactoryServiceImpl {
         (com.google.protobuf.ExtensionRegistryLite) registry);
   }
   static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_LexingCo_MessageRequest_descriptor;
+    internal_static_LexingCo_BuildRequest_descriptor;
   static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_LexingCo_MessageRequest_fieldAccessorTable;
+      internal_static_LexingCo_BuildRequest_fieldAccessorTable;
   static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_LexingCo_MessageReply_descriptor;
+    internal_static_LexingCo_BuildReply_descriptor;
   static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_LexingCo_MessageReply_fieldAccessorTable;
+      internal_static_LexingCo_BuildReply_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_LexingCo_RepairRequest_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_LexingCo_RepairRequest_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_LexingCo_RepairReply_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_LexingCo_RepairReply_fieldAccessorTable;
 
   public static com.google.protobuf.Descriptors.FileDescriptor
       getDescriptor() {
@@ -33,13 +43,16 @@ public final class LexingCoFactoryServiceImpl {
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n\025LexingCoFactory.proto\022\010LexingCo\"\036\n\016Mes" +
-      "sageRequest\022\014\n\004text\030\001 \001(\t\"\034\n\014MessageRepl" +
-      "y\022\014\n\004text\030\002 \001(\t2[\n\026LexingCoFactoryServic" +
-      "e\022A\n\013sendMessage\022\030.LexingCo.MessageReque" +
-      "st\032\026.LexingCo.MessageReply\"\000B=\n\035grpc.ser" +
-      "vices.LexingCoFactoryB\032LexingCoFactorySe" +
-      "rviceImplP\001b\006proto3"
+      "\n\025LexingCoFactory.proto\022\010LexingCo\"\034\n\014Bui" +
+      "ldRequest\022\014\n\004text\030\001 \001(\t\"\032\n\nBuildReply\022\014\n" +
+      "\004text\030\002 \001(\t\"\035\n\rRepairRequest\022\014\n\004text\030\003 \001" +
+      "(\t\"\033\n\013RepairReply\022\014\n\004text\030\004 \001(\t2\223\001\n\026Lexi" +
+      "ngCoFactoryService\022:\n\010buildCar\022\026.LexingC" +
+      "o.BuildRequest\032\024.LexingCo.BuildReply\"\000\022=" +
+      "\n\trepairCar\022\027.LexingCo.RepairRequest\032\025.L" +
+      "exingCo.RepairReply\"\000B=\n\035grpc.services.L" +
+      "exingCoFactoryB\032LexingCoFactoryServiceIm" +
+      "plP\001b\006proto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -53,17 +66,29 @@ public final class LexingCoFactoryServiceImpl {
       .internalBuildGeneratedFileFrom(descriptorData,
         new com.google.protobuf.Descriptors.FileDescriptor[] {
         }, assigner);
-    internal_static_LexingCo_MessageRequest_descriptor =
+    internal_static_LexingCo_BuildRequest_descriptor =
       getDescriptor().getMessageTypes().get(0);
-    internal_static_LexingCo_MessageRequest_fieldAccessorTable = new
+    internal_static_LexingCo_BuildRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_LexingCo_MessageRequest_descriptor,
+        internal_static_LexingCo_BuildRequest_descriptor,
         new java.lang.String[] { "Text", });
-    internal_static_LexingCo_MessageReply_descriptor =
+    internal_static_LexingCo_BuildReply_descriptor =
       getDescriptor().getMessageTypes().get(1);
-    internal_static_LexingCo_MessageReply_fieldAccessorTable = new
+    internal_static_LexingCo_BuildReply_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_LexingCo_MessageReply_descriptor,
+        internal_static_LexingCo_BuildReply_descriptor,
+        new java.lang.String[] { "Text", });
+    internal_static_LexingCo_RepairRequest_descriptor =
+      getDescriptor().getMessageTypes().get(2);
+    internal_static_LexingCo_RepairRequest_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_LexingCo_RepairRequest_descriptor,
+        new java.lang.String[] { "Text", });
+    internal_static_LexingCo_RepairReply_descriptor =
+      getDescriptor().getMessageTypes().get(3);
+    internal_static_LexingCo_RepairReply_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_LexingCo_RepairReply_descriptor,
         new java.lang.String[] { "Text", });
   }
 
