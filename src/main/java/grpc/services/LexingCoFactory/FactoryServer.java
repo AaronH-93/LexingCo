@@ -1,24 +1,16 @@
 package grpc.services.LexingCoFactory;
 
-
-import grpc.services.LexingCoWarehouse.LexingCoWarehouseServiceGrpc;
-import grpc.services.LexingCoWarehouse.MessageReply;
-import grpc.services.LexingCoWarehouse.MessageRequest;
-import io.grpc.ManagedChannel;
-import io.grpc.ManagedChannelBuilder;
 import io.grpc.Server;
 import io.grpc.ServerBuilder;
 import io.grpc.stub.StreamObserver;
 import models.CarPart;
 
 import javax.jmdns.JmDNS;
-import javax.jmdns.ServiceEvent;
 import javax.jmdns.ServiceInfo;
-import javax.jmdns.ServiceListener;
 import java.io.IOException;
 import java.net.InetAddress;
-import java.net.UnknownHostException;
 import java.util.ArrayList;
+
 
 public class FactoryServer extends LexingCoFactoryServiceGrpc.LexingCoFactoryServiceImplBase{
 
@@ -27,7 +19,6 @@ public class FactoryServer extends LexingCoFactoryServiceGrpc.LexingCoFactorySer
     private static ArrayList<CarPart> factoryStorage;
     static FactoryServer factoryServer;
     static FactoryServiceListener factoryServiceListener;
-
 
     public static void main(String[] args){
 
@@ -93,7 +84,7 @@ public class FactoryServer extends LexingCoFactoryServiceGrpc.LexingCoFactorySer
         for(CarPart part: factoryStorage){
             part.setQuantity(part.getQuantity() - 1);
             if(part.getQuantity() <= 1){
-                factoryServiceListener.requestParts(part.getPartName());
+                factoryServiceListener.requestParts();
             }
         }
     }

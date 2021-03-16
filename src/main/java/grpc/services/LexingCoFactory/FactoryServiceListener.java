@@ -16,42 +16,30 @@ public class FactoryServiceListener implements ServiceListener {
 
     private static final FactoryServiceListener factoryServiceListener = new FactoryServiceListener();
     private static LexingCoWarehouseServiceGrpc.LexingCoWarehouseServiceBlockingStub blockStub;
-    private static String warehouseHost;
-    private static int  warehousePort;
-
-
+    private int warehousePort = 50053;
 
     public static void main(String[] args) {
-        JmDNS jmdns = null;
         try {
-            jmdns = JmDNS.create(InetAddress.getLocalHost());
+            JmDNS jmdns = JmDNS.create(InetAddress.getLocalHost());
+            String service_type = "_warehouse._tcp.local.";
+            jmdns.addServiceListener(service_type, factoryServiceListener);
         } catch (IOException e) {
             e.printStackTrace();
         }
-        String service_type = "_warehouse._tcp.local.";
-        jmdns.addServiceListener(service_type, factoryServiceListener);
     }
 
     @Override
-    public void serviceAdded(ServiceEvent event) {
-        System.out.println("Service added: " + event.getInfo());
-
-    }
+    public void serviceAdded(ServiceEvent event) { System.out.println("Service added: " + event.getInfo()); }
 
     @Override
-    public void serviceRemoved(ServiceEvent event) {
-        System.out.println("Service removed: " + event.getInfo());
-    }
+    public void serviceRemoved(ServiceEvent event) { System.out.println("Service removed: " + event.getInfo()); }
 
     @Override
-    public void serviceResolved(ServiceEvent event) {
-        System.out.println("Service resolved: " + event.getInfo());
-        warehouseHost = event.getInfo().getHostAddresses()[0];
-        warehousePort = event.getInfo().getPort();
-    }
+    public void serviceResolved(ServiceEvent event) { System.out.println("Service resolved: " + event.getInfo()); }
 
-    void requestParts(String partName){
-        ManagedChannel channel = ManagedChannelBuilder.forAddress(warehouseHost, warehousePort).usePlaintext().build();
+    void requestParts(){
+        //This should be one of the streaming RPC functions probably
+        ManagedChannel channel = ManagedChannelBuilder.forAddress("localhost", warehousePort).usePlaintext().build();
         blockStub = LexingCoWarehouseServiceGrpc.newBlockingStub(channel);
         MessageRequest request = MessageRequest.newBuilder().build();
         MessageReply reply = blockStub.sendMessage(request);
