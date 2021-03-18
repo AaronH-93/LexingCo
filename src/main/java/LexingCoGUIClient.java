@@ -15,32 +15,31 @@ import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.net.InetAddress;
 
-public class LexingCoClient{
-
+public class LexingCoGUIClient {
     private static LexingCoFactoryServiceGrpc.LexingCoFactoryServiceBlockingStub blockStub;
-    private JFrame frame;
     private ServiceInfo factoryServiceInfo;
+    private JButton button1;
+    private JPanel lexingCoGUI;
 
 
     public static void main(String[] args) {
-        EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                try {
-                    LexingCoClient client = new LexingCoClient();
-                    client.frame.setVisible(true);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-        });
+        JFrame frame = new JFrame("LexingCo");
+        frame.setContentPane(new LexingCoGUIClient().lexingCoGUI);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.pack();
+        frame.setVisible(true);
     }
 
-    public LexingCoClient(){
+    public LexingCoGUIClient(){
         String factory_service_type = "_factory._tcp.local.";
         discoverFactoryService(factory_service_type);
 
-        initialiseGUIClient();
-
+        button1.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                buildCar("localhost", 50051);
+            }
+        });
     }
 
     private void discoverFactoryService(String service_type){
@@ -80,10 +79,6 @@ public class LexingCoClient{
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
-    }
-
-    private void initialiseGUIClient() {
-
     }
 
     private void buildCar(String host, int port) {
