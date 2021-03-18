@@ -10,7 +10,6 @@ import java.io.IOException;
 import java.net.InetAddress;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Map;
 
 public class WarehouseServer extends LexingCoWarehouseServiceGrpc.LexingCoWarehouseServiceImplBase {
     private static JmDNS jmDNS;
@@ -20,8 +19,6 @@ public class WarehouseServer extends LexingCoWarehouseServiceGrpc.LexingCoWareho
     private HashMap westWarehouse;
     private HashMap southWarehouse;
     private HashMap eastWarehouse;
-
-
 
     public static void main(String[] args){
 

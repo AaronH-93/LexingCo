@@ -31,10 +31,6 @@ public class FactoryServer extends LexingCoFactoryServiceGrpc.LexingCoFactorySer
             server = ServerBuilder.forPort(port).addService(factoryServer).build().start();
             System.out.println("Factory Server started, listening on " + port);
             server.awaitTermination();
-
-            //JmDNS stuff
-
-            // ---------
         } catch (IOException | InterruptedException e) {
             e.printStackTrace();
         }

@@ -1,6 +1,5 @@
-import grpc.services.LexingCoFactory.BuildReply;
-import grpc.services.LexingCoFactory.BuildRequest;
-import grpc.services.LexingCoFactory.LexingCoFactoryServiceGrpc;
+import grpc.services.LexingCoFactory.*;
+import grpc.services.LexingCoWarehouse.WarehouseServer;
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
 
@@ -9,7 +8,6 @@ import javax.jmdns.ServiceEvent;
 import javax.jmdns.ServiceInfo;
 import javax.jmdns.ServiceListener;
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
@@ -20,7 +18,6 @@ public class LexingCoGUIClient {
     private ServiceInfo factoryServiceInfo;
     private JButton button1;
     private JPanel lexingCoGUI;
-
 
     public static void main(String[] args) {
         JFrame frame = new JFrame("LexingCo");
