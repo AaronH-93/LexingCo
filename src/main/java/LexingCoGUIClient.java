@@ -20,8 +20,9 @@ public class LexingCoGUIClient {
     private JPanel lexingCoGUI;
 
     public static void main(String[] args) {
+        LexingCoGUIClient gui = new LexingCoGUIClient();
         JFrame frame = new JFrame("LexingCo");
-        frame.setContentPane(new LexingCoGUIClient().lexingCoGUI);
+        frame.setContentPane(gui.lexingCoGUI);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
         frame.setVisible(true);

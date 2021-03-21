@@ -13,6 +13,7 @@ import java.util.HashMap;
 
 public class WarehouseServer extends LexingCoWarehouseServiceGrpc.LexingCoWarehouseServiceImplBase {
     private static JmDNS jmDNS;
+    WarehouseServiceListener warehouseServiceListener = new WarehouseServiceListener();
     private final static int  port = 50053;
     ArrayList<HashMap> warehouseList;
     private HashMap northWarehouse;
@@ -24,6 +25,7 @@ public class WarehouseServer extends LexingCoWarehouseServiceGrpc.LexingCoWareho
 
         WarehouseServer warehouseServer = new WarehouseServer();
         warehouseServer.registerService();
+        //StockWarehouses could use OrderingService
         warehouseServer.stockWarehouses();
         Server server;
         try {
@@ -89,6 +91,7 @@ public class WarehouseServer extends LexingCoWarehouseServiceGrpc.LexingCoWareho
     public void sendMessage(MessageRequest request, StreamObserver<MessageReply> responseObserver) {
         System.out.println("Receiving Warehouse request");
         responseObserver.onNext(MessageReply.newBuilder().setText("200 - OK from warehouse service").build());
+        warehouseServiceListener.orderParts();
         responseObserver.onCompleted();
     }
 }
