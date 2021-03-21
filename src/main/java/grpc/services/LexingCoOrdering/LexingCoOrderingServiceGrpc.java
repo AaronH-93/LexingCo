@@ -27,36 +27,36 @@ public final class LexingCoOrderingServiceGrpc {
   public static final String SERVICE_NAME = "LexingCo.LexingCoOrderingService";
 
   // Static method descriptors that strictly reflect the proto.
-  private static volatile io.grpc.MethodDescriptor<grpc.services.LexingCoOrdering.MessageRequest,
-      grpc.services.LexingCoOrdering.MessageReply> getSendMessageMethod;
+  private static volatile io.grpc.MethodDescriptor<grpc.services.LexingCoOrdering.StockRequest,
+      grpc.services.LexingCoOrdering.StockReply> getOrderStockMethod;
 
   @io.grpc.stub.annotations.RpcMethod(
-      fullMethodName = SERVICE_NAME + '/' + "sendMessage",
-      requestType = grpc.services.LexingCoOrdering.MessageRequest.class,
-      responseType = grpc.services.LexingCoOrdering.MessageReply.class,
+      fullMethodName = SERVICE_NAME + '/' + "orderStock",
+      requestType = grpc.services.LexingCoOrdering.StockRequest.class,
+      responseType = grpc.services.LexingCoOrdering.StockReply.class,
       methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
-  public static io.grpc.MethodDescriptor<grpc.services.LexingCoOrdering.MessageRequest,
-      grpc.services.LexingCoOrdering.MessageReply> getSendMessageMethod() {
-    io.grpc.MethodDescriptor<grpc.services.LexingCoOrdering.MessageRequest, grpc.services.LexingCoOrdering.MessageReply> getSendMessageMethod;
-    if ((getSendMessageMethod = LexingCoOrderingServiceGrpc.getSendMessageMethod) == null) {
+  public static io.grpc.MethodDescriptor<grpc.services.LexingCoOrdering.StockRequest,
+      grpc.services.LexingCoOrdering.StockReply> getOrderStockMethod() {
+    io.grpc.MethodDescriptor<grpc.services.LexingCoOrdering.StockRequest, grpc.services.LexingCoOrdering.StockReply> getOrderStockMethod;
+    if ((getOrderStockMethod = LexingCoOrderingServiceGrpc.getOrderStockMethod) == null) {
       synchronized (LexingCoOrderingServiceGrpc.class) {
-        if ((getSendMessageMethod = LexingCoOrderingServiceGrpc.getSendMessageMethod) == null) {
-          LexingCoOrderingServiceGrpc.getSendMessageMethod = getSendMessageMethod = 
-              io.grpc.MethodDescriptor.<grpc.services.LexingCoOrdering.MessageRequest, grpc.services.LexingCoOrdering.MessageReply>newBuilder()
+        if ((getOrderStockMethod = LexingCoOrderingServiceGrpc.getOrderStockMethod) == null) {
+          LexingCoOrderingServiceGrpc.getOrderStockMethod = getOrderStockMethod = 
+              io.grpc.MethodDescriptor.<grpc.services.LexingCoOrdering.StockRequest, grpc.services.LexingCoOrdering.StockReply>newBuilder()
               .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
               .setFullMethodName(generateFullMethodName(
-                  "LexingCo.LexingCoOrderingService", "sendMessage"))
+                  "LexingCo.LexingCoOrderingService", "orderStock"))
               .setSampledToLocalTracing(true)
               .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  grpc.services.LexingCoOrdering.MessageRequest.getDefaultInstance()))
+                  grpc.services.LexingCoOrdering.StockRequest.getDefaultInstance()))
               .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  grpc.services.LexingCoOrdering.MessageReply.getDefaultInstance()))
-                  .setSchemaDescriptor(new LexingCoOrderingServiceMethodDescriptorSupplier("sendMessage"))
+                  grpc.services.LexingCoOrdering.StockReply.getDefaultInstance()))
+                  .setSchemaDescriptor(new LexingCoOrderingServiceMethodDescriptorSupplier("orderStock"))
                   .build();
           }
         }
      }
-     return getSendMessageMethod;
+     return getOrderStockMethod;
   }
 
   /**
@@ -88,20 +88,20 @@ public final class LexingCoOrderingServiceGrpc {
 
     /**
      */
-    public void sendMessage(grpc.services.LexingCoOrdering.MessageRequest request,
-        io.grpc.stub.StreamObserver<grpc.services.LexingCoOrdering.MessageReply> responseObserver) {
-      asyncUnimplementedUnaryCall(getSendMessageMethod(), responseObserver);
+    public void orderStock(grpc.services.LexingCoOrdering.StockRequest request,
+        io.grpc.stub.StreamObserver<grpc.services.LexingCoOrdering.StockReply> responseObserver) {
+      asyncUnimplementedUnaryCall(getOrderStockMethod(), responseObserver);
     }
 
     @java.lang.Override public final io.grpc.ServerServiceDefinition bindService() {
       return io.grpc.ServerServiceDefinition.builder(getServiceDescriptor())
           .addMethod(
-            getSendMessageMethod(),
+            getOrderStockMethod(),
             asyncUnaryCall(
               new MethodHandlers<
-                grpc.services.LexingCoOrdering.MessageRequest,
-                grpc.services.LexingCoOrdering.MessageReply>(
-                  this, METHODID_SEND_MESSAGE)))
+                grpc.services.LexingCoOrdering.StockRequest,
+                grpc.services.LexingCoOrdering.StockReply>(
+                  this, METHODID_ORDER_STOCK)))
           .build();
     }
   }
@@ -126,10 +126,10 @@ public final class LexingCoOrderingServiceGrpc {
 
     /**
      */
-    public void sendMessage(grpc.services.LexingCoOrdering.MessageRequest request,
-        io.grpc.stub.StreamObserver<grpc.services.LexingCoOrdering.MessageReply> responseObserver) {
+    public void orderStock(grpc.services.LexingCoOrdering.StockRequest request,
+        io.grpc.stub.StreamObserver<grpc.services.LexingCoOrdering.StockReply> responseObserver) {
       asyncUnaryCall(
-          getChannel().newCall(getSendMessageMethod(), getCallOptions()), request, responseObserver);
+          getChannel().newCall(getOrderStockMethod(), getCallOptions()), request, responseObserver);
     }
   }
 
@@ -153,9 +153,9 @@ public final class LexingCoOrderingServiceGrpc {
 
     /**
      */
-    public grpc.services.LexingCoOrdering.MessageReply sendMessage(grpc.services.LexingCoOrdering.MessageRequest request) {
+    public grpc.services.LexingCoOrdering.StockReply orderStock(grpc.services.LexingCoOrdering.StockRequest request) {
       return blockingUnaryCall(
-          getChannel(), getSendMessageMethod(), getCallOptions(), request);
+          getChannel(), getOrderStockMethod(), getCallOptions(), request);
     }
   }
 
@@ -179,14 +179,14 @@ public final class LexingCoOrderingServiceGrpc {
 
     /**
      */
-    public com.google.common.util.concurrent.ListenableFuture<grpc.services.LexingCoOrdering.MessageReply> sendMessage(
-        grpc.services.LexingCoOrdering.MessageRequest request) {
+    public com.google.common.util.concurrent.ListenableFuture<grpc.services.LexingCoOrdering.StockReply> orderStock(
+        grpc.services.LexingCoOrdering.StockRequest request) {
       return futureUnaryCall(
-          getChannel().newCall(getSendMessageMethod(), getCallOptions()), request);
+          getChannel().newCall(getOrderStockMethod(), getCallOptions()), request);
     }
   }
 
-  private static final int METHODID_SEND_MESSAGE = 0;
+  private static final int METHODID_ORDER_STOCK = 0;
 
   private static final class MethodHandlers<Req, Resp> implements
       io.grpc.stub.ServerCalls.UnaryMethod<Req, Resp>,
@@ -205,9 +205,9 @@ public final class LexingCoOrderingServiceGrpc {
     @java.lang.SuppressWarnings("unchecked")
     public void invoke(Req request, io.grpc.stub.StreamObserver<Resp> responseObserver) {
       switch (methodId) {
-        case METHODID_SEND_MESSAGE:
-          serviceImpl.sendMessage((grpc.services.LexingCoOrdering.MessageRequest) request,
-              (io.grpc.stub.StreamObserver<grpc.services.LexingCoOrdering.MessageReply>) responseObserver);
+        case METHODID_ORDER_STOCK:
+          serviceImpl.orderStock((grpc.services.LexingCoOrdering.StockRequest) request,
+              (io.grpc.stub.StreamObserver<grpc.services.LexingCoOrdering.StockReply>) responseObserver);
           break;
         default:
           throw new AssertionError();
@@ -270,7 +270,7 @@ public final class LexingCoOrderingServiceGrpc {
         if (result == null) {
           serviceDescriptor = result = io.grpc.ServiceDescriptor.newBuilder(SERVICE_NAME)
               .setSchemaDescriptor(new LexingCoOrderingServiceFileDescriptorSupplier())
-              .addMethod(getSendMessageMethod())
+              .addMethod(getOrderStockMethod())
               .build();
         }
       }

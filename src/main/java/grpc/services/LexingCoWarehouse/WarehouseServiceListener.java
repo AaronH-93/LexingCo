@@ -1,8 +1,8 @@
 package grpc.services.LexingCoWarehouse;
 
 import grpc.services.LexingCoOrdering.LexingCoOrderingServiceGrpc;
-import grpc.services.LexingCoOrdering.MessageReply;
-import grpc.services.LexingCoOrdering.MessageRequest;
+import grpc.services.LexingCoOrdering.StockReply;
+import grpc.services.LexingCoOrdering.StockRequest;
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
 
@@ -37,11 +37,11 @@ public class WarehouseServiceListener implements ServiceListener {
     @Override
     public void serviceResolved(ServiceEvent event) { System.out.println("Service resolved: " + event.getInfo()); }
 
-    void orderParts(){
+    public void orderParts(){
         ManagedChannel channel = ManagedChannelBuilder.forAddress("localhost", orderingPort).usePlaintext().build();
         blockStub = LexingCoOrderingServiceGrpc.newBlockingStub(channel);
-        MessageRequest request = MessageRequest.newBuilder().build();
-        MessageReply reply = blockStub.sendMessage(request);
+        StockRequest request = StockRequest.newBuilder().build();
+        StockReply reply = blockStub.orderStock(request);
         System.out.println("ordering parts! " + reply.getText());
     }
 }

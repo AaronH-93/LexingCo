@@ -18,6 +18,7 @@ public class LexingCoGUIClient {
     private ServiceInfo factoryServiceInfo;
     private JButton button1;
     private JPanel lexingCoGUI;
+    private JButton button2;
 
     public static void main(String[] args) {
         LexingCoGUIClient gui = new LexingCoGUIClient();
@@ -36,6 +37,12 @@ public class LexingCoGUIClient {
             @Override
             public void actionPerformed(ActionEvent e) {
                 buildCar("localhost", 50051);
+            }
+        });
+        button2.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                repairCar("localhost", 50051);
             }
         });
     }

@@ -9,6 +9,9 @@ import java.io.IOException
 import io.grpc.stub.StreamObserver
 import kotlin.jvm.JvmStatic
 import io.grpc.ServerBuilder
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.flow
 import java.lang.InterruptedException
 
 class OrderingServer : LexingCoOrderingServiceImplBase() {
@@ -30,9 +33,9 @@ class OrderingServer : LexingCoOrderingServiceImplBase() {
         }
     }
 
-    override fun sendMessage(request: MessageRequest, responseObserver: StreamObserver<MessageReply>) {
+    override fun orderStock(requests: StockRequest, responseObserver: StreamObserver<StockReply>) {
         println("Receiving Order request")
-        responseObserver.onNext(MessageReply.newBuilder().setText("200 - OK from ordering service").build())
+        responseObserver.onNext(StockReply.newBuilder().setText("200 - OK from ordering service").build())
         responseObserver.onCompleted()
     }
 

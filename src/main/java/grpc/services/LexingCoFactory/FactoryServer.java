@@ -16,7 +16,7 @@ public class FactoryServer extends LexingCoFactoryServiceGrpc.LexingCoFactorySer
 
     private static JmDNS jmDNS;
     private final static int  port = 50051;
-    private static ArrayList<CarPart> factoryStorage;
+    static ArrayList<CarPart> factoryStorage;
     static FactoryServer factoryServer;
     static FactoryServiceListener factoryServiceListener;
 
@@ -37,10 +37,15 @@ public class FactoryServer extends LexingCoFactoryServiceGrpc.LexingCoFactorySer
     }
 
     private static void stockFactory() {
-        factoryStorage = new ArrayList<CarPart>();
+        factoryStorage = new ArrayList<>();
         factoryStorage.add(new CarPart("Battery", 2));
         factoryStorage.add(new CarPart("Brakes", 2));
         factoryStorage.add(new CarPart("Engine", 2));
+        factoryStorage.add(new CarPart("Doors", 2));
+        factoryStorage.add(new CarPart("Seats", 2));
+        factoryStorage.add(new CarPart("Lights", 2));
+        factoryStorage.add(new CarPart("Wheels", 2));
+        factoryStorage.add(new CarPart("Chassis", 2));
     }
 
     private void registerService() {
@@ -64,31 +69,69 @@ public class FactoryServer extends LexingCoFactoryServiceGrpc.LexingCoFactorySer
         }
     }
 
-    //Make a factory storage
-    //When a build request comes in, check if all parts have available stock, if not, request more from warehouse.
-    //When a repair request comes in, check if the part is in stock, if not, request more from warehouse.
+    @Override
+    public void repairCar(RepairRequest request, StreamObserver<RepairReply> responseObserver) {
+        System.out.println("Receiving repair request");
+        replaceParts(vehicleInspection());
+        responseObserver.onNext(RepairReply.newBuilder().setText("200 - OK from factory repair service").build());
+        responseObserver.onCompleted();
+    }
 
     @Override
     public void buildCar(BuildRequest request, StreamObserver<BuildReply> responseObserver) {
         System.out.println("Receiving build request");
-        sourceParts();
         responseObserver.onNext(BuildReply.newBuilder().setText("200 - OK from factory build service").build());
+        sourceParts();
         responseObserver.onCompleted();
     }
+
+    //Make a factory storage
+    //When a build request comes in, check if all parts have available stock, if not, request more from warehouse.
+    //When a repair request comes in, check if the part is in stock, if not, request more from warehouse.
+
+    //The Factory is not concerned about an logical aspect the of the warehouse service
+    //When the factory requests parts, it gets them.
 
     private void sourceParts() {
         for(CarPart part: factoryStorage){
             part.setQuantity(part.getQuantity() - 1);
-            if(part.getQuantity() <= 1){
-                factoryServiceListener.requestParts();
+            System.out.println("Quantity of "+ part.getPartName() +" parts in stock: " + part.getQuantity());
+            if(part.getQuantity() == 0){
+                System.out.println("Requesting more stock of "+ part.getPartName() +" from warehouse.");
+                //requestParts is what restocks the factory stocks
+                //When the factory runs out of parts, it requests more
+                factoryServiceListener.requestParts(part.getPartName());
+                //When this is called, the factory service should add two of each part used to its stores
+                //and the warehouse should remove 2 from its stores.
             }
         }
     }
 
-    @Override
-    public void repairCar(RepairRequest request, StreamObserver<RepairReply> responseObserver) {
-        System.out.println("Receiving repair request");
-        responseObserver.onNext(RepairReply.newBuilder().setText("200 - OK from factory repair service").build());
-        responseObserver.onCompleted();
+    private void replaceParts(String[] parts){
+        for(CarPart part: factoryStorage){
+            for(String replaceParts: parts){
+                if(factoryStorage.contains(replaceParts)){
+                    part.setQuantity(part.getQuantity() - 1);
+                    if(part.getQuantity() == 0){
+                        //requestParts is what restocks the factory stocks
+                        factoryServiceListener.requestParts(parts);
+                    }
+                }
+            }
+        }
+    }
+
+    void restockFactory(String part, int quantity) {
+        for (CarPart carPart : factoryStorage) {
+            if (carPart.getPartName().equals(part)) {
+                carPart.setQuantity(quantity);
+            }
+        }
+    }
+
+    private String[] vehicleInspection() {
+        //Randomly select car parts that need to be replaced simulating parts to be replaced.
+        String[] listOfRepairs = {"Engine", "Wheels"};
+        return listOfRepairs;
     }
 }

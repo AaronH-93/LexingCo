@@ -27,36 +27,36 @@ public final class LexingCoWarehouseServiceGrpc {
   public static final String SERVICE_NAME = "LexingCo.LexingCoWarehouseService";
 
   // Static method descriptors that strictly reflect the proto.
-  private static volatile io.grpc.MethodDescriptor<grpc.services.LexingCoWarehouse.MessageRequest,
-      grpc.services.LexingCoWarehouse.MessageReply> getSendMessageMethod;
+  private static volatile io.grpc.MethodDescriptor<grpc.services.LexingCoWarehouse.RestockRequest,
+      grpc.services.LexingCoWarehouse.RestockReply> getRestockFactoryMethod;
 
   @io.grpc.stub.annotations.RpcMethod(
-      fullMethodName = SERVICE_NAME + '/' + "sendMessage",
-      requestType = grpc.services.LexingCoWarehouse.MessageRequest.class,
-      responseType = grpc.services.LexingCoWarehouse.MessageReply.class,
+      fullMethodName = SERVICE_NAME + '/' + "restockFactory",
+      requestType = grpc.services.LexingCoWarehouse.RestockRequest.class,
+      responseType = grpc.services.LexingCoWarehouse.RestockReply.class,
       methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
-  public static io.grpc.MethodDescriptor<grpc.services.LexingCoWarehouse.MessageRequest,
-      grpc.services.LexingCoWarehouse.MessageReply> getSendMessageMethod() {
-    io.grpc.MethodDescriptor<grpc.services.LexingCoWarehouse.MessageRequest, grpc.services.LexingCoWarehouse.MessageReply> getSendMessageMethod;
-    if ((getSendMessageMethod = LexingCoWarehouseServiceGrpc.getSendMessageMethod) == null) {
+  public static io.grpc.MethodDescriptor<grpc.services.LexingCoWarehouse.RestockRequest,
+      grpc.services.LexingCoWarehouse.RestockReply> getRestockFactoryMethod() {
+    io.grpc.MethodDescriptor<grpc.services.LexingCoWarehouse.RestockRequest, grpc.services.LexingCoWarehouse.RestockReply> getRestockFactoryMethod;
+    if ((getRestockFactoryMethod = LexingCoWarehouseServiceGrpc.getRestockFactoryMethod) == null) {
       synchronized (LexingCoWarehouseServiceGrpc.class) {
-        if ((getSendMessageMethod = LexingCoWarehouseServiceGrpc.getSendMessageMethod) == null) {
-          LexingCoWarehouseServiceGrpc.getSendMessageMethod = getSendMessageMethod = 
-              io.grpc.MethodDescriptor.<grpc.services.LexingCoWarehouse.MessageRequest, grpc.services.LexingCoWarehouse.MessageReply>newBuilder()
+        if ((getRestockFactoryMethod = LexingCoWarehouseServiceGrpc.getRestockFactoryMethod) == null) {
+          LexingCoWarehouseServiceGrpc.getRestockFactoryMethod = getRestockFactoryMethod = 
+              io.grpc.MethodDescriptor.<grpc.services.LexingCoWarehouse.RestockRequest, grpc.services.LexingCoWarehouse.RestockReply>newBuilder()
               .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
               .setFullMethodName(generateFullMethodName(
-                  "LexingCo.LexingCoWarehouseService", "sendMessage"))
+                  "LexingCo.LexingCoWarehouseService", "restockFactory"))
               .setSampledToLocalTracing(true)
               .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  grpc.services.LexingCoWarehouse.MessageRequest.getDefaultInstance()))
+                  grpc.services.LexingCoWarehouse.RestockRequest.getDefaultInstance()))
               .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  grpc.services.LexingCoWarehouse.MessageReply.getDefaultInstance()))
-                  .setSchemaDescriptor(new LexingCoWarehouseServiceMethodDescriptorSupplier("sendMessage"))
+                  grpc.services.LexingCoWarehouse.RestockReply.getDefaultInstance()))
+                  .setSchemaDescriptor(new LexingCoWarehouseServiceMethodDescriptorSupplier("restockFactory"))
                   .build();
           }
         }
      }
-     return getSendMessageMethod;
+     return getRestockFactoryMethod;
   }
 
   /**
@@ -88,20 +88,20 @@ public final class LexingCoWarehouseServiceGrpc {
 
     /**
      */
-    public void sendMessage(grpc.services.LexingCoWarehouse.MessageRequest request,
-        io.grpc.stub.StreamObserver<grpc.services.LexingCoWarehouse.MessageReply> responseObserver) {
-      asyncUnimplementedUnaryCall(getSendMessageMethod(), responseObserver);
+    public void restockFactory(grpc.services.LexingCoWarehouse.RestockRequest request,
+        io.grpc.stub.StreamObserver<grpc.services.LexingCoWarehouse.RestockReply> responseObserver) {
+      asyncUnimplementedUnaryCall(getRestockFactoryMethod(), responseObserver);
     }
 
     @java.lang.Override public final io.grpc.ServerServiceDefinition bindService() {
       return io.grpc.ServerServiceDefinition.builder(getServiceDescriptor())
           .addMethod(
-            getSendMessageMethod(),
+            getRestockFactoryMethod(),
             asyncUnaryCall(
               new MethodHandlers<
-                grpc.services.LexingCoWarehouse.MessageRequest,
-                grpc.services.LexingCoWarehouse.MessageReply>(
-                  this, METHODID_SEND_MESSAGE)))
+                grpc.services.LexingCoWarehouse.RestockRequest,
+                grpc.services.LexingCoWarehouse.RestockReply>(
+                  this, METHODID_RESTOCK_FACTORY)))
           .build();
     }
   }
@@ -126,10 +126,10 @@ public final class LexingCoWarehouseServiceGrpc {
 
     /**
      */
-    public void sendMessage(grpc.services.LexingCoWarehouse.MessageRequest request,
-        io.grpc.stub.StreamObserver<grpc.services.LexingCoWarehouse.MessageReply> responseObserver) {
+    public void restockFactory(grpc.services.LexingCoWarehouse.RestockRequest request,
+        io.grpc.stub.StreamObserver<grpc.services.LexingCoWarehouse.RestockReply> responseObserver) {
       asyncUnaryCall(
-          getChannel().newCall(getSendMessageMethod(), getCallOptions()), request, responseObserver);
+          getChannel().newCall(getRestockFactoryMethod(), getCallOptions()), request, responseObserver);
     }
   }
 
@@ -153,9 +153,9 @@ public final class LexingCoWarehouseServiceGrpc {
 
     /**
      */
-    public grpc.services.LexingCoWarehouse.MessageReply sendMessage(grpc.services.LexingCoWarehouse.MessageRequest request) {
+    public grpc.services.LexingCoWarehouse.RestockReply restockFactory(grpc.services.LexingCoWarehouse.RestockRequest request) {
       return blockingUnaryCall(
-          getChannel(), getSendMessageMethod(), getCallOptions(), request);
+          getChannel(), getRestockFactoryMethod(), getCallOptions(), request);
     }
   }
 
@@ -179,14 +179,14 @@ public final class LexingCoWarehouseServiceGrpc {
 
     /**
      */
-    public com.google.common.util.concurrent.ListenableFuture<grpc.services.LexingCoWarehouse.MessageReply> sendMessage(
-        grpc.services.LexingCoWarehouse.MessageRequest request) {
+    public com.google.common.util.concurrent.ListenableFuture<grpc.services.LexingCoWarehouse.RestockReply> restockFactory(
+        grpc.services.LexingCoWarehouse.RestockRequest request) {
       return futureUnaryCall(
-          getChannel().newCall(getSendMessageMethod(), getCallOptions()), request);
+          getChannel().newCall(getRestockFactoryMethod(), getCallOptions()), request);
     }
   }
 
-  private static final int METHODID_SEND_MESSAGE = 0;
+  private static final int METHODID_RESTOCK_FACTORY = 0;
 
   private static final class MethodHandlers<Req, Resp> implements
       io.grpc.stub.ServerCalls.UnaryMethod<Req, Resp>,
@@ -205,9 +205,9 @@ public final class LexingCoWarehouseServiceGrpc {
     @java.lang.SuppressWarnings("unchecked")
     public void invoke(Req request, io.grpc.stub.StreamObserver<Resp> responseObserver) {
       switch (methodId) {
-        case METHODID_SEND_MESSAGE:
-          serviceImpl.sendMessage((grpc.services.LexingCoWarehouse.MessageRequest) request,
-              (io.grpc.stub.StreamObserver<grpc.services.LexingCoWarehouse.MessageReply>) responseObserver);
+        case METHODID_RESTOCK_FACTORY:
+          serviceImpl.restockFactory((grpc.services.LexingCoWarehouse.RestockRequest) request,
+              (io.grpc.stub.StreamObserver<grpc.services.LexingCoWarehouse.RestockReply>) responseObserver);
           break;
         default:
           throw new AssertionError();
@@ -270,7 +270,7 @@ public final class LexingCoWarehouseServiceGrpc {
         if (result == null) {
           serviceDescriptor = result = io.grpc.ServiceDescriptor.newBuilder(SERVICE_NAME)
               .setSchemaDescriptor(new LexingCoWarehouseServiceFileDescriptorSupplier())
-              .addMethod(getSendMessageMethod())
+              .addMethod(getRestockFactoryMethod())
               .build();
         }
       }

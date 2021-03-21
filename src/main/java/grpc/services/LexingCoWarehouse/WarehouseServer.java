@@ -40,15 +40,16 @@ public class WarehouseServer extends LexingCoWarehouseServiceGrpc.LexingCoWareho
     private void stockWarehouses() {
         northWarehouse = new HashMap();
         northWarehouse.put("Engine", 5);
-        northWarehouse.put("Wheels", 5);
+        northWarehouse.put("Battery", 5);
         westWarehouse = new HashMap();
         westWarehouse.put("Chassis", 5);
-        westWarehouse.put("Doors", 5);
+        westWarehouse.put("Brakes", 5);
         southWarehouse = new HashMap();
-        southWarehouse.put("Windows", 5);
+        southWarehouse.put("Doors", 5);
         southWarehouse.put("Seats", 5);
         eastWarehouse = new HashMap();
         eastWarehouse.put("Lights", 5);
+        eastWarehouse.put("Wheels", 5);
 
         warehouseList = new ArrayList<>();
         warehouseList.add(northWarehouse);
@@ -87,11 +88,32 @@ public class WarehouseServer extends LexingCoWarehouseServiceGrpc.LexingCoWareho
         }
     }
 
+    //This needs to be renamed to something more appropriate
     @Override
-    public void sendMessage(MessageRequest request, StreamObserver<MessageReply> responseObserver) {
-        System.out.println("Receiving Warehouse request");
-        responseObserver.onNext(MessageReply.newBuilder().setText("200 - OK from warehouse service").build());
-        warehouseServiceListener.orderParts();
+    public void restockFactory(RestockRequest request, StreamObserver<RestockReply> responseObserver) {
+        String quantity = "2";
+        System.out.println("Receiving Factory request for parts");
+        removeParts(request.getText(), Integer.parseInt(quantity));
+        responseObserver.onNext(RestockReply.newBuilder().setText(quantity).build());
         responseObserver.onCompleted();
     }
+
+    private void removeParts(String part, int quantity) {
+        System.out.println("Sending new stock of " + part + "'s, Quantity: " + quantity);
+        int newQuantity = 0;
+        for(HashMap warehouse : warehouseList){
+            if(warehouse.containsKey(part)){
+                newQuantity = (int) warehouse.get(part);
+                newQuantity -= quantity;
+                warehouse.replace(part, newQuantity);
+
+                if((int) warehouse.get(part) <= 2){
+                    System.out.println("Restocking");
+                    warehouseServiceListener.orderParts();
+                }
+            }
+        }
+        System.out.println("Quantity of " + part + " in warehouse stock is " + newQuantity);
+    }
+
 }

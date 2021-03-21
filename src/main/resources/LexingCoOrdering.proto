@@ -7,14 +7,14 @@ option java_outer_classname = "LexingCoOrderingServiceImpl";
 package LexingCo;
 
 service LexingCoOrderingService{
-  rpc sendMessage(MessageRequest) returns (MessageReply){}
+  rpc orderStock(StockRequest) returns (StockReply){}
 
 }
 
-message MessageRequest{
+message StockRequest{
   string text = 1;
 }
 
-message MessageReply{
+message StockReply{
   string text = 2;
 }

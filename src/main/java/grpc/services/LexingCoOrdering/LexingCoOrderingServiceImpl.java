@@ -15,15 +15,15 @@ public final class LexingCoOrderingServiceImpl {
         (com.google.protobuf.ExtensionRegistryLite) registry);
   }
   static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_LexingCo_MessageRequest_descriptor;
+    internal_static_LexingCo_StockRequest_descriptor;
   static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_LexingCo_MessageRequest_fieldAccessorTable;
+      internal_static_LexingCo_StockRequest_fieldAccessorTable;
   static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_LexingCo_MessageReply_descriptor;
+    internal_static_LexingCo_StockReply_descriptor;
   static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_LexingCo_MessageReply_fieldAccessorTable;
+      internal_static_LexingCo_StockReply_fieldAccessorTable;
 
   public static com.google.protobuf.Descriptors.FileDescriptor
       getDescriptor() {
@@ -33,13 +33,13 @@ public final class LexingCoOrderingServiceImpl {
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n\026LexingCoOrdering.proto\022\010LexingCo\"\036\n\016Me" +
-      "ssageRequest\022\014\n\004text\030\001 \001(\t\"\034\n\014MessageRep" +
-      "ly\022\014\n\004text\030\002 \001(\t2\\\n\027LexingCoOrderingServ" +
-      "ice\022A\n\013sendMessage\022\030.LexingCo.MessageReq" +
-      "uest\032\026.LexingCo.MessageReply\"\000B?\n\036grpc.s" +
-      "ervices.LexingCoOrderingB\033LexingCoOrderi" +
-      "ngServiceImplP\001b\006proto3"
+      "\n\026LexingCoOrdering.proto\022\010LexingCo\"\034\n\014St" +
+      "ockRequest\022\014\n\004text\030\001 \001(\t\"\032\n\nStockReply\022\014" +
+      "\n\004text\030\002 \001(\t2W\n\027LexingCoOrderingService\022" +
+      "<\n\norderStock\022\026.LexingCo.StockRequest\032\024." +
+      "LexingCo.StockReply\"\000B?\n\036grpc.services.L" +
+      "exingCoOrderingB\033LexingCoOrderingService" +
+      "ImplP\001b\006proto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -53,17 +53,17 @@ public final class LexingCoOrderingServiceImpl {
       .internalBuildGeneratedFileFrom(descriptorData,
         new com.google.protobuf.Descriptors.FileDescriptor[] {
         }, assigner);
-    internal_static_LexingCo_MessageRequest_descriptor =
+    internal_static_LexingCo_StockRequest_descriptor =
       getDescriptor().getMessageTypes().get(0);
-    internal_static_LexingCo_MessageRequest_fieldAccessorTable = new
+    internal_static_LexingCo_StockRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_LexingCo_MessageRequest_descriptor,
+        internal_static_LexingCo_StockRequest_descriptor,
         new java.lang.String[] { "Text", });
-    internal_static_LexingCo_MessageReply_descriptor =
+    internal_static_LexingCo_StockReply_descriptor =
       getDescriptor().getMessageTypes().get(1);
-    internal_static_LexingCo_MessageReply_fieldAccessorTable = new
+    internal_static_LexingCo_StockReply_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_LexingCo_MessageReply_descriptor,
+        internal_static_LexingCo_StockReply_descriptor,
         new java.lang.String[] { "Text", });
   }
 
