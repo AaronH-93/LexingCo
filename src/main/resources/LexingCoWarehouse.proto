@@ -8,7 +8,7 @@ package LexingCo;
 
 service LexingCoWarehouseService{
   rpc restockFactory(RestockRequest) returns (RestockReply){}
-
+  rpc restockFactoryStream(stream RestockRequest) returns (RestockReply){}
 }
 
 message RestockRequest{

@@ -1,6 +1,7 @@
 package grpc.services.LexingCoOrdering
 
 import grpc.services.LexingCoOrdering.LexingCoOrderingServiceGrpc.LexingCoOrderingServiceImplBase
+import io.grpc.Context
 import io.grpc.Server
 import javax.jmdns.JmDNS
 import java.net.InetAddress
@@ -33,9 +34,17 @@ class OrderingServer : LexingCoOrderingServiceImplBase() {
         }
     }
 
-    override fun orderStock(requests: StockRequest, responseObserver: StreamObserver<StockReply>) {
-        println("Receiving Order request")
-        responseObserver.onNext(StockReply.newBuilder().setText("200 - OK from ordering service").build())
+    override fun orderStock(request: StockRequest, responseObserver: StreamObserver<StockReply>) {
+        val quantity = "5";
+        println("Receiving Order request for " + request.text)
+        var forked = Context.current().fork()
+        var old = forked.attach()
+
+        try{
+            responseObserver.onNext(StockReply.newBuilder().setText(quantity).build())
+        } finally {
+            forked.detach(old)
+        }
         responseObserver.onCompleted()
     }
 

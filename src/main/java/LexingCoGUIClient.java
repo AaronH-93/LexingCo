@@ -1,5 +1,6 @@
-import grpc.services.LexingCoFactory.*;
-import grpc.services.LexingCoWarehouse.WarehouseServer;
+import grpc.services.LexingCoFactory.BuildReply;
+import grpc.services.LexingCoFactory.BuildRequest;
+import grpc.services.LexingCoFactory.LexingCoFactoryServiceGrpc;
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
 
@@ -14,7 +15,10 @@ import java.io.IOException;
 import java.net.InetAddress;
 
 public class LexingCoGUIClient {
-    private static LexingCoFactoryServiceGrpc.LexingCoFactoryServiceBlockingStub blockStub;
+    private static int factoryPort = 50051;
+    private static String factoryHost = "localhost";
+    private static ManagedChannel channel = ManagedChannelBuilder.forAddress(factoryHost, factoryPort).usePlaintext().build();
+    private static LexingCoFactoryServiceGrpc.LexingCoFactoryServiceBlockingStub blockStub = LexingCoFactoryServiceGrpc.newBlockingStub(channel);;
     private ServiceInfo factoryServiceInfo;
     private JButton button1;
     private JPanel lexingCoGUI;
@@ -36,13 +40,13 @@ public class LexingCoGUIClient {
         button1.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                buildCar("localhost", 50051);
+                buildCar();
             }
         });
         button2.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                repairCar("localhost", 50051);
+                repairCar();
             }
         });
     }
@@ -76,9 +80,6 @@ public class LexingCoGUIClient {
                     System.out.println("\t name: " + event.getName());
                     System.out.println("\t description/properties: " + factoryServiceInfo.getNiceTextString());
                     System.out.println("\t host: " + factoryServiceInfo.getHostAddresses()[0]);
-
-                    //Ideally we will determine what function to use from here in the GUI
-                    //buildCar(event.getInfo().getHostAddresses()[0], event.getInfo().getPort());
                 }
             });
         } catch (IOException e) {
@@ -86,17 +87,13 @@ public class LexingCoGUIClient {
         }
     }
 
-    private void buildCar(String host, int port) {
-        ManagedChannel channel = ManagedChannelBuilder.forAddress(host, port).usePlaintext().build();
-        blockStub = LexingCoFactoryServiceGrpc.newBlockingStub(channel);
+    private void buildCar() {
         BuildRequest request = BuildRequest.newBuilder().build();
         BuildReply reply = blockStub.buildCar(request);
         System.out.println("Building car! " + reply.getText());
     }
 
-    private void repairCar(String host, int port) {
-        ManagedChannel channel = ManagedChannelBuilder.forAddress(host, port).usePlaintext().build();
-        blockStub = LexingCoFactoryServiceGrpc.newBlockingStub(channel);
+    private void repairCar() {
         BuildRequest request = BuildRequest.newBuilder().build();
         BuildReply reply = blockStub.buildCar(request);
         System.out.println("Repairing Car " + reply.getText());

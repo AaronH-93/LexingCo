@@ -1,5 +1,8 @@
 package grpc.services.LexingCoFactory;
 
+import grpc.services.LexingCoWarehouse.RestockReply;
+import grpc.services.LexingCoWarehouse.RestockRequest;
+import io.grpc.Context;
 import io.grpc.Server;
 import io.grpc.ServerBuilder;
 import io.grpc.stub.StreamObserver;
@@ -16,9 +19,9 @@ public class FactoryServer extends LexingCoFactoryServiceGrpc.LexingCoFactorySer
 
     private static JmDNS jmDNS;
     private final static int  port = 50051;
-    static ArrayList<CarPart> factoryStorage;
-    static FactoryServer factoryServer;
-    static FactoryServiceListener factoryServiceListener;
+    private static ArrayList<CarPart> factoryStorage;
+    private static FactoryServer factoryServer;
+    private static FactoryServiceListener factoryServiceListener;
 
     public static void main(String[] args){
 
@@ -80,8 +83,14 @@ public class FactoryServer extends LexingCoFactoryServiceGrpc.LexingCoFactorySer
     @Override
     public void buildCar(BuildRequest request, StreamObserver<BuildReply> responseObserver) {
         System.out.println("Receiving build request");
-        responseObserver.onNext(BuildReply.newBuilder().setText("200 - OK from factory build service").build());
-        sourceParts();
+        Context forked = Context.current().fork();
+        Context old = forked.attach();
+        try {
+            responseObserver.onNext(BuildReply.newBuilder().setText("200 - OK from factory build service").build());
+            sourceParts();
+        } finally {
+            forked.detach(old);
+        }
         responseObserver.onCompleted();
     }
 
@@ -93,6 +102,7 @@ public class FactoryServer extends LexingCoFactoryServiceGrpc.LexingCoFactorySer
     //When the factory requests parts, it gets them.
 
     private void sourceParts() {
+        ArrayList<String> newStockRequest = new ArrayList<>();
         for(CarPart part: factoryStorage){
             part.setQuantity(part.getQuantity() - 1);
             System.out.println("Quantity of "+ part.getPartName() +" parts in stock: " + part.getQuantity());
@@ -100,10 +110,14 @@ public class FactoryServer extends LexingCoFactoryServiceGrpc.LexingCoFactorySer
                 System.out.println("Requesting more stock of "+ part.getPartName() +" from warehouse.");
                 //requestParts is what restocks the factory stocks
                 //When the factory runs out of parts, it requests more
-                factoryServiceListener.requestParts(part.getPartName());
+                newStockRequest.add(part.getPartName());
+                //factoryServiceListener.requestParts(part.getPartName());
                 //When this is called, the factory service should add two of each part used to its stores
                 //and the warehouse should remove 2 from its stores.
             }
+        }
+        if(!newStockRequest.isEmpty()){
+            factoryServiceListener.requestPartsStream(newStockRequest);
         }
     }
 

@@ -7,19 +7,24 @@ import grpc.services.LexingCoWarehouse.RestockReply;
 import grpc.services.LexingCoWarehouse.RestockRequest;
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
+import io.grpc.stub.StreamObserver;
 
 import javax.jmdns.JmDNS;
 import javax.jmdns.ServiceEvent;
 import javax.jmdns.ServiceListener;
 import java.io.IOException;
 import java.net.InetAddress;
+import java.util.ArrayList;
 
 
 public class FactoryServiceListener extends FactoryServer implements ServiceListener {
 
     private static final FactoryServiceListener factoryServiceListener = new FactoryServiceListener();
+    private static int warehousePort = 50053;
+    private static ManagedChannel channel = ManagedChannelBuilder.forAddress("localhost", warehousePort).usePlaintext().build();
     private static LexingCoWarehouseServiceGrpc.LexingCoWarehouseServiceBlockingStub blockStub;
-    private int warehousePort = 50053;
+    private static LexingCoWarehouseServiceGrpc.LexingCoWarehouseServiceStub asyncStub;
+
 
     public static void main(String[] args) {
         try {
@@ -41,23 +46,50 @@ public class FactoryServiceListener extends FactoryServer implements ServiceList
     public void serviceResolved(ServiceEvent event) { System.out.println("Service resolved: " + event.getInfo()); }
 
     public void requestParts(String part){
-        ManagedChannel channel = ManagedChannelBuilder.forAddress("localhost", warehousePort).usePlaintext().build();
         blockStub = LexingCoWarehouseServiceGrpc.newBlockingStub(channel);
-
         RestockRequest request = RestockRequest.newBuilder().setText(part).build();
         RestockReply reply = blockStub.restockFactory(request);
         restockFactory(part, Integer.parseInt(reply.getText()));
         System.out.println("Receiving new stock of " + part +"'s!");
     }
 
-
-
     public void requestParts(String[] parts) {
-        ManagedChannel channel = ManagedChannelBuilder.forAddress("localhost", warehousePort).usePlaintext().build();
         blockStub = LexingCoWarehouseServiceGrpc.newBlockingStub(channel);
-
         RestockRequest request = RestockRequest.newBuilder().build();
         RestockReply reply = blockStub.restockFactory(request);
         System.out.println("parts! " + reply.getText());
+    }
+
+    public void requestPartsStream(ArrayList<String> parts){
+        asyncStub = LexingCoWarehouseServiceGrpc.newStub(channel);
+
+        StreamObserver<RestockReply> responseObserver = new StreamObserver<RestockReply>() {
+            @Override
+            public void onNext(RestockReply restockReply) {
+                System.out.println("Receiving new stock of " + restockReply.getText());
+            }
+
+            @Override
+            public void onError(Throwable throwable) {
+                throwable.printStackTrace();
+            }
+
+            @Override
+            public void onCompleted() {
+                System.out.println("Stream complete, accepting stock.");
+            }
+        };
+
+        StreamObserver<RestockRequest> requestObserver = asyncStub.restockFactoryStream(responseObserver);
+        try{
+            for(String part : parts){
+                requestObserver.onNext(RestockRequest.newBuilder().setText(part).build());
+                restockFactory(part, 2);
+                Thread.sleep(500);
+            }
+            requestObserver.onCompleted();
+        } catch (RuntimeException | InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 }

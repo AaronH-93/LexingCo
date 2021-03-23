@@ -35,11 +35,13 @@ public final class LexingCoWarehouseServiceImpl {
     java.lang.String[] descriptorData = {
       "\n\027LexingCoWarehouse.proto\022\010LexingCo\"\036\n\016R" +
       "estockRequest\022\014\n\004text\030\001 \001(\t\"\034\n\014RestockRe" +
-      "ply\022\014\n\004text\030\002 \001(\t2`\n\030LexingCoWarehouseSe" +
-      "rvice\022D\n\016restockFactory\022\030.LexingCo.Resto" +
-      "ckRequest\032\026.LexingCo.RestockReply\"\000BA\n\037g" +
-      "rpc.services.LexingCoWarehouseB\034LexingCo" +
-      "WarehouseServiceImplP\001b\006proto3"
+      "ply\022\014\n\004text\030\002 \001(\t2\256\001\n\030LexingCoWarehouseS" +
+      "ervice\022D\n\016restockFactory\022\030.LexingCo.Rest" +
+      "ockRequest\032\026.LexingCo.RestockReply\"\000\022L\n\024" +
+      "restockFactoryStream\022\030.LexingCo.RestockR" +
+      "equest\032\026.LexingCo.RestockReply\"\000(\001BA\n\037gr" +
+      "pc.services.LexingCoWarehouseB\034LexingCoW" +
+      "arehouseServiceImplP\001b\006proto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {

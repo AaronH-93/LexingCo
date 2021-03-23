@@ -12,11 +12,12 @@ import javax.jmdns.ServiceListener;
 import java.io.IOException;
 import java.net.InetAddress;
 
-public class WarehouseServiceListener implements ServiceListener {
+public class WarehouseServiceListener extends WarehouseServer implements ServiceListener {
 
     private static final WarehouseServiceListener warehouseServiceListener = new WarehouseServiceListener();
+    private static int orderingPort = 50052;
+    private static ManagedChannel channel = ManagedChannelBuilder.forAddress("localhost", orderingPort).usePlaintext().build();
     private static LexingCoOrderingServiceGrpc.LexingCoOrderingServiceBlockingStub blockStub;
-    private int orderingPort = 50052;
 
     public static void main(String[] args) {
         try {
@@ -37,11 +38,11 @@ public class WarehouseServiceListener implements ServiceListener {
     @Override
     public void serviceResolved(ServiceEvent event) { System.out.println("Service resolved: " + event.getInfo()); }
 
-    public void orderParts(){
-        ManagedChannel channel = ManagedChannelBuilder.forAddress("localhost", orderingPort).usePlaintext().build();
+    public void orderParts(String part){
         blockStub = LexingCoOrderingServiceGrpc.newBlockingStub(channel);
-        StockRequest request = StockRequest.newBuilder().build();
+        StockRequest request = StockRequest.newBuilder().setText(part).build();
         StockReply reply = blockStub.orderStock(request);
+        restockWarehouse(part, Integer.parseInt(reply.getText()));
         System.out.println("ordering parts! " + reply.getText());
     }
 }
