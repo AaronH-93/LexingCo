@@ -10,9 +10,6 @@ import java.io.IOException
 import io.grpc.stub.StreamObserver
 import kotlin.jvm.JvmStatic
 import io.grpc.ServerBuilder
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.collect
-import kotlinx.coroutines.flow.flow
 import java.lang.InterruptedException
 
 class OrderingServer : LexingCoOrderingServiceImplBase() {
@@ -34,14 +31,34 @@ class OrderingServer : LexingCoOrderingServiceImplBase() {
         }
     }
 
-    override fun orderStock(request: StockRequest, responseObserver: StreamObserver<StockReply>) {
+    override fun orderStockServerStream(request: WarehouseRestockRequest, responseObserver: StreamObserver<OrderRestockReply>) {
+        println("Receiving warehouse request for new stock")
         val quantity = "5";
-        println("Receiving Order request for " + request.text)
+        var forked = Context.current().fork()
+        var old = forked.attach()
+        var requestList = request.text.split("\n").toTypedArray()
+        var test = requestList.copyOf(requestList.size - 1)
+
+        try {
+            for (part in test) {
+                println("Ordering $quantity new stock of $part")
+                responseObserver.onNext(OrderRestockReply.newBuilder().setText("$part\n$quantity").build())
+            }
+        } finally{
+            forked.detach(old)
+        }
+        responseObserver.onCompleted()
+    }
+
+    //not used right now
+    override fun orderStock(request: WarehouseRestockRequest, responseObserver: StreamObserver<OrderRestockReply>) {
+        val quantity = "5";
+        println("Receiving Order request for ${request.text}")
         var forked = Context.current().fork()
         var old = forked.attach()
 
         try{
-            responseObserver.onNext(StockReply.newBuilder().setText(quantity).build())
+            responseObserver.onNext(OrderRestockReply.newBuilder().setText(quantity).build())
         } finally {
             forked.detach(old)
         }

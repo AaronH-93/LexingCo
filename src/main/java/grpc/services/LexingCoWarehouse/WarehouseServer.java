@@ -3,6 +3,7 @@ package grpc.services.LexingCoWarehouse;
 import io.grpc.Server;
 import io.grpc.ServerBuilder;
 import io.grpc.stub.StreamObserver;
+import models.CarPart;
 
 import javax.jmdns.JmDNS;
 import javax.jmdns.ServiceInfo;
@@ -82,20 +83,20 @@ public class WarehouseServer extends LexingCoWarehouseServiceGrpc.LexingCoWareho
 
     //This needs to be renamed to something more appropriate
     @Override
-    public void restockFactory(RestockRequest request, StreamObserver<RestockReply> responseObserver) {
+    public void restockFactory(FactoryRestockRequest request, StreamObserver<FactoryRestockReply> responseObserver) {
         String quantity = "2";
         System.out.println("Receiving Factory request for parts");
         //removeParts(request.getText(), Integer.parseInt(quantity));
-        responseObserver.onNext(RestockReply.newBuilder().setText(quantity).build());
+        responseObserver.onNext(FactoryRestockReply.newBuilder().setText(quantity).build());
         responseObserver.onCompleted();
     }
 
-    public StreamObserver<RestockRequest> restockFactoryStream(StreamObserver<RestockReply> responseObserver){
-        return new StreamObserver<RestockRequest>() {
+    public StreamObserver<FactoryRestockRequest> restockFactoryStream(StreamObserver<FactoryRestockReply> responseObserver){
+        return new StreamObserver<FactoryRestockRequest>() {
             ArrayList<String> list = new ArrayList<>();
             String quantity = "2";
             @Override
-            public void onNext(RestockRequest restockRequest) {
+            public void onNext(FactoryRestockRequest restockRequest) {
                 System.out.println("Receiving Factory request for: " + restockRequest.getText());
                 list.add(restockRequest.getText());
             }
@@ -111,7 +112,36 @@ public class WarehouseServer extends LexingCoWarehouseServiceGrpc.LexingCoWareho
                 for(String part : list){
                     response += "\n " + part;
                 }
-                RestockReply reply = new RestockReply().newBuilder().setText(response).build();
+                FactoryRestockReply reply = FactoryRestockReply.newBuilder().setText(response).build();
+                responseObserver.onNext(reply);
+                responseObserver.onCompleted();
+                removeParts(list, Integer.parseInt(quantity));
+            }
+        };
+    }
+
+    public StreamObserver<FactoryRestockRequest> repairStockFactoryStream(StreamObserver<FactoryRestockReply> responseObserver){
+        return new StreamObserver<FactoryRestockRequest>() {
+            ArrayList<String> list = new ArrayList<>();
+            String quantity = "1";
+            @Override
+            public void onNext(FactoryRestockRequest restockRequest) {
+                System.out.println("Receiving repair request for: " + restockRequest.getText());
+                list.add(restockRequest.getText());
+            }
+
+            @Override
+            public void onError(Throwable throwable) {
+                throwable.printStackTrace();
+            }
+
+            @Override
+            public void onCompleted() {
+                String response = "";
+                for(String part : list){
+                    response += "\n " + part;
+                }
+                FactoryRestockReply reply = FactoryRestockReply.newBuilder().setText(response).build();
                 responseObserver.onNext(reply);
                 responseObserver.onCompleted();
                 removeParts(list, Integer.parseInt(quantity));
@@ -121,8 +151,9 @@ public class WarehouseServer extends LexingCoWarehouseServiceGrpc.LexingCoWareho
 
     private void removeParts(ArrayList<String> parts, int quantity) {
         int newQuantity = 0;
+        String partsToOrder = "";
         for(String part : parts){
-            System.out.println("Sending new stock of " + part + "'s, Quantity: " + quantity);
+            System.out.println("Sending new stock of " + part + "'s to factory, Quantity: " + quantity);
             for(HashMap warehouse : warehouseList){
                 if(warehouse.containsKey(part)){
                     newQuantity = (int) warehouse.get(part);
@@ -130,12 +161,15 @@ public class WarehouseServer extends LexingCoWarehouseServiceGrpc.LexingCoWareho
                     warehouse.replace(part, newQuantity);
 
                     if((int) warehouse.get(part) <= 2){
-                        System.out.println("Restocking");
-                        warehouseServiceListener.orderParts(part);
+                        System.out.println("Ordering new stock of " + part + " for warehouse");
+                        partsToOrder += part + "\n";
                     }
                 }
             }
             System.out.println("Quantity of " + part + " in warehouse stock is " + newQuantity);
+        }
+        if(!partsToOrder.isEmpty()){
+            warehouseServiceListener.orderPartsServerStream(partsToOrder);
         }
     }
 
@@ -143,6 +177,14 @@ public class WarehouseServer extends LexingCoWarehouseServiceGrpc.LexingCoWareho
         for(HashMap warehouse : warehouseList){
             if(warehouse.containsKey(part)){
                 warehouse.replace(part, quantity);
+            }
+        }
+    }
+
+    public void restockWarehouseWithPart(CarPart part){
+        for(HashMap warehouse : warehouseList){
+            if(warehouse.containsKey(part.getPartName())){
+                warehouse.replace(part.getPartName(), part.getQuantity());
             }
         }
     }

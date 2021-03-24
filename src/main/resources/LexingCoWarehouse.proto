@@ -7,14 +7,15 @@ option java_outer_classname = "LexingCoWarehouseServiceImpl";
 package LexingCo;
 
 service LexingCoWarehouseService{
-  rpc restockFactory(RestockRequest) returns (RestockReply){}
-  rpc restockFactoryStream(stream RestockRequest) returns (RestockReply){}
+  rpc restockFactory(FactoryRestockRequest) returns (FactoryRestockReply){}
+  rpc restockFactoryStream(stream FactoryRestockRequest) returns (FactoryRestockReply){}
+  rpc repairStockFactoryStream(stream FactoryRestockRequest) returns (stream FactoryRestockReply){}
 }
 
-message RestockRequest{
+message FactoryRestockRequest{
   string text = 1;
 }
 
-message RestockReply{
+message FactoryRestockReply{
   string text = 2;
 }

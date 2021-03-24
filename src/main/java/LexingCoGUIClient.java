@@ -1,6 +1,4 @@
-import grpc.services.LexingCoFactory.BuildReply;
-import grpc.services.LexingCoFactory.BuildRequest;
-import grpc.services.LexingCoFactory.LexingCoFactoryServiceGrpc;
+import grpc.services.LexingCoFactory.*;
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
 
@@ -18,10 +16,10 @@ public class LexingCoGUIClient {
     private static int factoryPort = 50051;
     private static String factoryHost = "localhost";
     private static ManagedChannel channel = ManagedChannelBuilder.forAddress(factoryHost, factoryPort).usePlaintext().build();
-    private static LexingCoFactoryServiceGrpc.LexingCoFactoryServiceBlockingStub blockStub = LexingCoFactoryServiceGrpc.newBlockingStub(channel);;
+    private static final LexingCoFactoryServiceGrpc.LexingCoFactoryServiceBlockingStub blockStub = LexingCoFactoryServiceGrpc.newBlockingStub(channel);;
     private ServiceInfo factoryServiceInfo;
-    private JButton button1;
     private JPanel lexingCoGUI;
+    private JButton button1;
     private JButton button2;
 
     public static void main(String[] args) {
@@ -94,8 +92,8 @@ public class LexingCoGUIClient {
     }
 
     private void repairCar() {
-        BuildRequest request = BuildRequest.newBuilder().build();
-        BuildReply reply = blockStub.buildCar(request);
+        RepairRequest request = RepairRequest.newBuilder().build();
+        RepairReply reply = blockStub.repairCar(request);
         System.out.println("Repairing Car " + reply.getText());
     }
 }
