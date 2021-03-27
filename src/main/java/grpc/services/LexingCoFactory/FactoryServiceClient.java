@@ -13,9 +13,9 @@ import java.net.InetAddress;
 import java.util.ArrayList;
 
 
-public class FactoryServiceListener extends FactoryServer implements ServiceListener {
+public class FactoryServiceClient extends FactoryServer implements ServiceListener {
 
-    private static final FactoryServiceListener factoryServiceListener = new FactoryServiceListener();
+    private static final FactoryServiceClient FACTORY_SERVICE_CLIENT = new FactoryServiceClient();
     private static int warehousePort = 50053;
     private static ManagedChannel channel = ManagedChannelBuilder.forAddress("localhost", warehousePort).usePlaintext().build();
     private static LexingCoWarehouseServiceGrpc.LexingCoWarehouseServiceBlockingStub blockStub;
@@ -24,9 +24,10 @@ public class FactoryServiceListener extends FactoryServer implements ServiceList
 
     public static void main(String[] args) {
         try {
+            //Creats a JmDNS instance of the warehouse service type.
             JmDNS jmdns = JmDNS.create(InetAddress.getLocalHost());
             String service_type = "_warehouse._tcp.local.";
-            jmdns.addServiceListener(service_type, factoryServiceListener);
+            jmdns.addServiceListener(service_type, FACTORY_SERVICE_CLIENT);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -41,22 +42,8 @@ public class FactoryServiceListener extends FactoryServer implements ServiceList
     @Override
     public void serviceResolved(ServiceEvent event) { System.out.println("Service resolved: " + event.getInfo()); }
 
-    //not used right now
-    public void requestParts(String part){
-        blockStub = LexingCoWarehouseServiceGrpc.newBlockingStub(channel);
-        FactoryRestockRequest request = FactoryRestockRequest.newBuilder().setText(part).build();
-        FactoryRestockReply reply = blockStub.restockFactory(request);
-        restockFactory(part, Integer.parseInt(reply.getText()));
-        System.out.println("Receiving new stock of " + part +"'s!");
-    }
-
-    public void requestParts(String[] parts) {
-        blockStub = LexingCoWarehouseServiceGrpc.newBlockingStub(channel);
-        FactoryRestockRequest request = FactoryRestockRequest.newBuilder().build();
-        FactoryRestockReply reply = blockStub.restockFactory(request);
-        System.out.println("parts! " + reply.getText());
-    }
-
+    //requestPartsStream calls the Client Side rpc stream in the warehouse service.
+    //It sends a message for each car part that needs to be restocked and receives a quantity to restock.
     public void requestPartsStream(ArrayList<String> parts){
         asyncStub = LexingCoWarehouseServiceGrpc.newStub(channel);
 
@@ -90,14 +77,19 @@ public class FactoryServiceListener extends FactoryServer implements ServiceList
         }
     }
 
-    public void repairPartsBiDiStream(String[] parts) {
+    //repairPartsBiDiStream is a bidirectional stream rpc message for the repair car implementation.
+    //It sends a message for each part that needs to be repaired/replaced
+    //and receives a message per message it sends.
+    //Since the replacement parts are sourced directly from the warehouse,
+    //there is no consideration for factory storage
+    public void repairPartsBiDiStream(ArrayList<String> parts) {
         asyncStub = LexingCoWarehouseServiceGrpc.newStub(channel);
 
         StreamObserver<FactoryRestockReply> responseObserver = new StreamObserver<FactoryRestockReply>() {
 
             @Override
             public void onNext(FactoryRestockReply factoryRestockReply) {
-                System.out.println("Replacement part for " + factoryRestockReply.getText() + "sourced.");
+                System.out.println("Replacement parts for: " + factoryRestockReply.getText() + "\nsourced.");
             }
 
             @Override
@@ -107,7 +99,7 @@ public class FactoryServiceListener extends FactoryServer implements ServiceList
 
             @Override
             public void onCompleted() {
-                System.out.println("Client onCompleted here");
+                System.out.println("Delivery received.");
             }
         };
 

@@ -7,10 +7,7 @@ option java_outer_classname = "LexingCoOrderingServiceImpl";
 package LexingCo;
 
 service LexingCoOrderingService{
-  rpc orderStock(WarehouseRestockRequest) returns (OrderRestockReply){}
   rpc orderStockServerStream(WarehouseRestockRequest) returns (stream OrderRestockReply){}
-  rpc orderRepairStockBiDiStream(WarehouseRestockRequest) returns (stream OrderRestockReply){}
-
 }
 
 message WarehouseRestockRequest{

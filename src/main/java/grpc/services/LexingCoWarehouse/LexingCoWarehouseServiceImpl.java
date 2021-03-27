@@ -35,17 +35,15 @@ public final class LexingCoWarehouseServiceImpl {
     java.lang.String[] descriptorData = {
       "\n\027LexingCoWarehouse.proto\022\010LexingCo\"%\n\025F" +
       "actoryRestockRequest\022\014\n\004text\030\001 \001(\t\"#\n\023Fa" +
-      "ctoryRestockReply\022\014\n\004text\030\002 \001(\t2\254\002\n\030Lexi" +
-      "ngCoWarehouseService\022R\n\016restockFactory\022\037" +
-      ".LexingCo.FactoryRestockRequest\032\035.Lexing" +
-      "Co.FactoryRestockReply\"\000\022Z\n\024restockFacto" +
-      "ryStream\022\037.LexingCo.FactoryRestockReques" +
-      "t\032\035.LexingCo.FactoryRestockReply\"\000(\001\022`\n\030" +
-      "repairStockFactoryStream\022\037.LexingCo.Fact" +
-      "oryRestockRequest\032\035.LexingCo.FactoryRest" +
-      "ockReply\"\000(\0010\001BA\n\037grpc.services.LexingCo" +
-      "WarehouseB\034LexingCoWarehouseServiceImplP" +
-      "\001b\006proto3"
+      "ctoryRestockReply\022\014\n\004text\030\002 \001(\t2\330\001\n\030Lexi" +
+      "ngCoWarehouseService\022Z\n\024restockFactorySt" +
+      "ream\022\037.LexingCo.FactoryRestockRequest\032\035." +
+      "LexingCo.FactoryRestockReply\"\000(\001\022`\n\030repa" +
+      "irStockFactoryStream\022\037.LexingCo.FactoryR" +
+      "estockRequest\032\035.LexingCo.FactoryRestockR" +
+      "eply\"\000(\0010\001BA\n\037grpc.services.LexingCoWare" +
+      "houseB\034LexingCoWarehouseServiceImplP\001b\006p" +
+      "roto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {

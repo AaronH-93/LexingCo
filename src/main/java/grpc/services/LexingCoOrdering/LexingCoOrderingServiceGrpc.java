@@ -28,38 +28,6 @@ public final class LexingCoOrderingServiceGrpc {
 
   // Static method descriptors that strictly reflect the proto.
   private static volatile io.grpc.MethodDescriptor<grpc.services.LexingCoOrdering.WarehouseRestockRequest,
-      grpc.services.LexingCoOrdering.OrderRestockReply> getOrderStockMethod;
-
-  @io.grpc.stub.annotations.RpcMethod(
-      fullMethodName = SERVICE_NAME + '/' + "orderStock",
-      requestType = grpc.services.LexingCoOrdering.WarehouseRestockRequest.class,
-      responseType = grpc.services.LexingCoOrdering.OrderRestockReply.class,
-      methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
-  public static io.grpc.MethodDescriptor<grpc.services.LexingCoOrdering.WarehouseRestockRequest,
-      grpc.services.LexingCoOrdering.OrderRestockReply> getOrderStockMethod() {
-    io.grpc.MethodDescriptor<grpc.services.LexingCoOrdering.WarehouseRestockRequest, grpc.services.LexingCoOrdering.OrderRestockReply> getOrderStockMethod;
-    if ((getOrderStockMethod = LexingCoOrderingServiceGrpc.getOrderStockMethod) == null) {
-      synchronized (LexingCoOrderingServiceGrpc.class) {
-        if ((getOrderStockMethod = LexingCoOrderingServiceGrpc.getOrderStockMethod) == null) {
-          LexingCoOrderingServiceGrpc.getOrderStockMethod = getOrderStockMethod = 
-              io.grpc.MethodDescriptor.<grpc.services.LexingCoOrdering.WarehouseRestockRequest, grpc.services.LexingCoOrdering.OrderRestockReply>newBuilder()
-              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
-              .setFullMethodName(generateFullMethodName(
-                  "LexingCo.LexingCoOrderingService", "orderStock"))
-              .setSampledToLocalTracing(true)
-              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  grpc.services.LexingCoOrdering.WarehouseRestockRequest.getDefaultInstance()))
-              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  grpc.services.LexingCoOrdering.OrderRestockReply.getDefaultInstance()))
-                  .setSchemaDescriptor(new LexingCoOrderingServiceMethodDescriptorSupplier("orderStock"))
-                  .build();
-          }
-        }
-     }
-     return getOrderStockMethod;
-  }
-
-  private static volatile io.grpc.MethodDescriptor<grpc.services.LexingCoOrdering.WarehouseRestockRequest,
       grpc.services.LexingCoOrdering.OrderRestockReply> getOrderStockServerStreamMethod;
 
   @io.grpc.stub.annotations.RpcMethod(
@@ -91,38 +59,6 @@ public final class LexingCoOrderingServiceGrpc {
      return getOrderStockServerStreamMethod;
   }
 
-  private static volatile io.grpc.MethodDescriptor<grpc.services.LexingCoOrdering.WarehouseRestockRequest,
-      grpc.services.LexingCoOrdering.OrderRestockReply> getOrderRepairStockBiDiStreamMethod;
-
-  @io.grpc.stub.annotations.RpcMethod(
-      fullMethodName = SERVICE_NAME + '/' + "orderRepairStockBiDiStream",
-      requestType = grpc.services.LexingCoOrdering.WarehouseRestockRequest.class,
-      responseType = grpc.services.LexingCoOrdering.OrderRestockReply.class,
-      methodType = io.grpc.MethodDescriptor.MethodType.SERVER_STREAMING)
-  public static io.grpc.MethodDescriptor<grpc.services.LexingCoOrdering.WarehouseRestockRequest,
-      grpc.services.LexingCoOrdering.OrderRestockReply> getOrderRepairStockBiDiStreamMethod() {
-    io.grpc.MethodDescriptor<grpc.services.LexingCoOrdering.WarehouseRestockRequest, grpc.services.LexingCoOrdering.OrderRestockReply> getOrderRepairStockBiDiStreamMethod;
-    if ((getOrderRepairStockBiDiStreamMethod = LexingCoOrderingServiceGrpc.getOrderRepairStockBiDiStreamMethod) == null) {
-      synchronized (LexingCoOrderingServiceGrpc.class) {
-        if ((getOrderRepairStockBiDiStreamMethod = LexingCoOrderingServiceGrpc.getOrderRepairStockBiDiStreamMethod) == null) {
-          LexingCoOrderingServiceGrpc.getOrderRepairStockBiDiStreamMethod = getOrderRepairStockBiDiStreamMethod = 
-              io.grpc.MethodDescriptor.<grpc.services.LexingCoOrdering.WarehouseRestockRequest, grpc.services.LexingCoOrdering.OrderRestockReply>newBuilder()
-              .setType(io.grpc.MethodDescriptor.MethodType.SERVER_STREAMING)
-              .setFullMethodName(generateFullMethodName(
-                  "LexingCo.LexingCoOrderingService", "orderRepairStockBiDiStream"))
-              .setSampledToLocalTracing(true)
-              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  grpc.services.LexingCoOrdering.WarehouseRestockRequest.getDefaultInstance()))
-              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  grpc.services.LexingCoOrdering.OrderRestockReply.getDefaultInstance()))
-                  .setSchemaDescriptor(new LexingCoOrderingServiceMethodDescriptorSupplier("orderRepairStockBiDiStream"))
-                  .build();
-          }
-        }
-     }
-     return getOrderRepairStockBiDiStreamMethod;
-  }
-
   /**
    * Creates a new async stub that supports all call types for the service
    */
@@ -152,34 +88,13 @@ public final class LexingCoOrderingServiceGrpc {
 
     /**
      */
-    public void orderStock(grpc.services.LexingCoOrdering.WarehouseRestockRequest request,
-        io.grpc.stub.StreamObserver<grpc.services.LexingCoOrdering.OrderRestockReply> responseObserver) {
-      asyncUnimplementedUnaryCall(getOrderStockMethod(), responseObserver);
-    }
-
-    /**
-     */
     public void orderStockServerStream(grpc.services.LexingCoOrdering.WarehouseRestockRequest request,
         io.grpc.stub.StreamObserver<grpc.services.LexingCoOrdering.OrderRestockReply> responseObserver) {
       asyncUnimplementedUnaryCall(getOrderStockServerStreamMethod(), responseObserver);
     }
 
-    /**
-     */
-    public void orderRepairStockBiDiStream(grpc.services.LexingCoOrdering.WarehouseRestockRequest request,
-        io.grpc.stub.StreamObserver<grpc.services.LexingCoOrdering.OrderRestockReply> responseObserver) {
-      asyncUnimplementedUnaryCall(getOrderRepairStockBiDiStreamMethod(), responseObserver);
-    }
-
     @java.lang.Override public final io.grpc.ServerServiceDefinition bindService() {
       return io.grpc.ServerServiceDefinition.builder(getServiceDescriptor())
-          .addMethod(
-            getOrderStockMethod(),
-            asyncUnaryCall(
-              new MethodHandlers<
-                grpc.services.LexingCoOrdering.WarehouseRestockRequest,
-                grpc.services.LexingCoOrdering.OrderRestockReply>(
-                  this, METHODID_ORDER_STOCK)))
           .addMethod(
             getOrderStockServerStreamMethod(),
             asyncServerStreamingCall(
@@ -187,13 +102,6 @@ public final class LexingCoOrderingServiceGrpc {
                 grpc.services.LexingCoOrdering.WarehouseRestockRequest,
                 grpc.services.LexingCoOrdering.OrderRestockReply>(
                   this, METHODID_ORDER_STOCK_SERVER_STREAM)))
-          .addMethod(
-            getOrderRepairStockBiDiStreamMethod(),
-            asyncServerStreamingCall(
-              new MethodHandlers<
-                grpc.services.LexingCoOrdering.WarehouseRestockRequest,
-                grpc.services.LexingCoOrdering.OrderRestockReply>(
-                  this, METHODID_ORDER_REPAIR_STOCK_BI_DI_STREAM)))
           .build();
     }
   }
@@ -218,26 +126,10 @@ public final class LexingCoOrderingServiceGrpc {
 
     /**
      */
-    public void orderStock(grpc.services.LexingCoOrdering.WarehouseRestockRequest request,
-        io.grpc.stub.StreamObserver<grpc.services.LexingCoOrdering.OrderRestockReply> responseObserver) {
-      asyncUnaryCall(
-          getChannel().newCall(getOrderStockMethod(), getCallOptions()), request, responseObserver);
-    }
-
-    /**
-     */
     public void orderStockServerStream(grpc.services.LexingCoOrdering.WarehouseRestockRequest request,
         io.grpc.stub.StreamObserver<grpc.services.LexingCoOrdering.OrderRestockReply> responseObserver) {
       asyncServerStreamingCall(
           getChannel().newCall(getOrderStockServerStreamMethod(), getCallOptions()), request, responseObserver);
-    }
-
-    /**
-     */
-    public void orderRepairStockBiDiStream(grpc.services.LexingCoOrdering.WarehouseRestockRequest request,
-        io.grpc.stub.StreamObserver<grpc.services.LexingCoOrdering.OrderRestockReply> responseObserver) {
-      asyncServerStreamingCall(
-          getChannel().newCall(getOrderRepairStockBiDiStreamMethod(), getCallOptions()), request, responseObserver);
     }
   }
 
@@ -261,25 +153,10 @@ public final class LexingCoOrderingServiceGrpc {
 
     /**
      */
-    public grpc.services.LexingCoOrdering.OrderRestockReply orderStock(grpc.services.LexingCoOrdering.WarehouseRestockRequest request) {
-      return blockingUnaryCall(
-          getChannel(), getOrderStockMethod(), getCallOptions(), request);
-    }
-
-    /**
-     */
     public java.util.Iterator<grpc.services.LexingCoOrdering.OrderRestockReply> orderStockServerStream(
         grpc.services.LexingCoOrdering.WarehouseRestockRequest request) {
       return blockingServerStreamingCall(
           getChannel(), getOrderStockServerStreamMethod(), getCallOptions(), request);
-    }
-
-    /**
-     */
-    public java.util.Iterator<grpc.services.LexingCoOrdering.OrderRestockReply> orderRepairStockBiDiStream(
-        grpc.services.LexingCoOrdering.WarehouseRestockRequest request) {
-      return blockingServerStreamingCall(
-          getChannel(), getOrderRepairStockBiDiStreamMethod(), getCallOptions(), request);
     }
   }
 
@@ -300,19 +177,9 @@ public final class LexingCoOrderingServiceGrpc {
         io.grpc.CallOptions callOptions) {
       return new LexingCoOrderingServiceFutureStub(channel, callOptions);
     }
-
-    /**
-     */
-    public com.google.common.util.concurrent.ListenableFuture<grpc.services.LexingCoOrdering.OrderRestockReply> orderStock(
-        grpc.services.LexingCoOrdering.WarehouseRestockRequest request) {
-      return futureUnaryCall(
-          getChannel().newCall(getOrderStockMethod(), getCallOptions()), request);
-    }
   }
 
-  private static final int METHODID_ORDER_STOCK = 0;
-  private static final int METHODID_ORDER_STOCK_SERVER_STREAM = 1;
-  private static final int METHODID_ORDER_REPAIR_STOCK_BI_DI_STREAM = 2;
+  private static final int METHODID_ORDER_STOCK_SERVER_STREAM = 0;
 
   private static final class MethodHandlers<Req, Resp> implements
       io.grpc.stub.ServerCalls.UnaryMethod<Req, Resp>,
@@ -331,16 +198,8 @@ public final class LexingCoOrderingServiceGrpc {
     @java.lang.SuppressWarnings("unchecked")
     public void invoke(Req request, io.grpc.stub.StreamObserver<Resp> responseObserver) {
       switch (methodId) {
-        case METHODID_ORDER_STOCK:
-          serviceImpl.orderStock((grpc.services.LexingCoOrdering.WarehouseRestockRequest) request,
-              (io.grpc.stub.StreamObserver<grpc.services.LexingCoOrdering.OrderRestockReply>) responseObserver);
-          break;
         case METHODID_ORDER_STOCK_SERVER_STREAM:
           serviceImpl.orderStockServerStream((grpc.services.LexingCoOrdering.WarehouseRestockRequest) request,
-              (io.grpc.stub.StreamObserver<grpc.services.LexingCoOrdering.OrderRestockReply>) responseObserver);
-          break;
-        case METHODID_ORDER_REPAIR_STOCK_BI_DI_STREAM:
-          serviceImpl.orderRepairStockBiDiStream((grpc.services.LexingCoOrdering.WarehouseRestockRequest) request,
               (io.grpc.stub.StreamObserver<grpc.services.LexingCoOrdering.OrderRestockReply>) responseObserver);
           break;
         default:
@@ -404,9 +263,7 @@ public final class LexingCoOrderingServiceGrpc {
         if (result == null) {
           serviceDescriptor = result = io.grpc.ServiceDescriptor.newBuilder(SERVICE_NAME)
               .setSchemaDescriptor(new LexingCoOrderingServiceFileDescriptorSupplier())
-              .addMethod(getOrderStockMethod())
               .addMethod(getOrderStockServerStreamMethod())
-              .addMethod(getOrderRepairStockBiDiStreamMethod())
               .build();
         }
       }

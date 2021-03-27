@@ -14,19 +14,18 @@ import javax.jmdns.ServiceListener;
 import java.io.IOException;
 import java.net.InetAddress;
 
-public class WarehouseServiceListener extends WarehouseServer implements ServiceListener {
+public class WarehouseServiceClient extends WarehouseServer implements ServiceListener {
 
-    private static final WarehouseServiceListener warehouseServiceListener = new WarehouseServiceListener();
+    private static final WarehouseServiceClient WAREHOUSE_SERVICE_CLIENT = new WarehouseServiceClient();
     private static int orderingPort = 50052;
     private static ManagedChannel channel = ManagedChannelBuilder.forAddress("localhost", orderingPort).usePlaintext().build();
-    private static LexingCoOrderingServiceGrpc.LexingCoOrderingServiceBlockingStub blockStub;
     private static LexingCoOrderingServiceGrpc.LexingCoOrderingServiceStub asyncStub;
 
     public static void main(String[] args) {
         try {
             JmDNS jmdns = JmDNS.create(InetAddress.getLocalHost());
             String service_type = "_ordering._tcp.local.";
-            jmdns.addServiceListener(service_type, warehouseServiceListener);
+            jmdns.addServiceListener(service_type, WAREHOUSE_SERVICE_CLIENT);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -41,15 +40,9 @@ public class WarehouseServiceListener extends WarehouseServer implements Service
     @Override
     public void serviceResolved(ServiceEvent event) { System.out.println("Service resolved: " + event.getInfo()); }
 
-    //Not used right now
-    public void orderParts(String part){
-        blockStub = LexingCoOrderingServiceGrpc.newBlockingStub(channel);
-        WarehouseRestockRequest request = WarehouseRestockRequest.newBuilder().setText(part).build();
-        OrderRestockReply reply = blockStub.orderStock(request);
-        restockWarehouse(part, Integer.parseInt(reply.getText()));
-        System.out.println("ordering parts! " + reply.getText());
-    }
-
+    //orderPartsServerStream is a server side rpc stream that takes in a single message and returns multiple
+    //It takes the message containing the parts it needs to order and splits it into an array
+    //and creates a new car part from each message, which is added back to the warehouse.
     public void orderPartsServerStream(String partsToOrder){
         asyncStub = LexingCoOrderingServiceGrpc.newStub(channel);
         WarehouseRestockRequest request = WarehouseRestockRequest.newBuilder().setText(partsToOrder).build();
@@ -58,10 +51,7 @@ public class WarehouseServiceListener extends WarehouseServer implements Service
             @Override
             public void onNext(OrderRestockReply orderRestockReply) {
                 System.out.println("Received new stock of: " + orderRestockReply.getText());
-                //add method that adds stock to warehouse based on this reply.
-                //maybe make the next two lines a function in the service?
                 String[] reply = orderRestockReply.getText().split("\n");
-                //not working right now because the response is only sending the quantity
                 CarPart part = new CarPart(reply[0], Integer.parseInt(reply[1]));
                 restockWarehouseWithPart(part);
             }

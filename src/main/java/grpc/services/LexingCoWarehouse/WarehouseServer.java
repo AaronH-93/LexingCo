@@ -15,7 +15,7 @@ import java.util.HashMap;
 public class WarehouseServer extends LexingCoWarehouseServiceGrpc.LexingCoWarehouseServiceImplBase {
     private static JmDNS jmDNS;
     private static WarehouseServer warehouseServer;
-    private static WarehouseServiceListener warehouseServiceListener;
+    private static WarehouseServiceClient warehouseServiceClient;
     private final static int  port = 50053;
     private static ArrayList<HashMap> warehouseList;
     private static HashMap northWarehouse;
@@ -24,7 +24,7 @@ public class WarehouseServer extends LexingCoWarehouseServiceGrpc.LexingCoWareho
     private static HashMap eastWarehouse;
 
     public static void main(String[] args){
-        warehouseServiceListener = new WarehouseServiceListener();
+        warehouseServiceClient = new WarehouseServiceClient();
         warehouseServer = new WarehouseServer();
         warehouseServer.registerService();
         stockWarehouses();
@@ -81,16 +81,9 @@ public class WarehouseServer extends LexingCoWarehouseServiceGrpc.LexingCoWareho
         }
     }
 
-    //This needs to be renamed to something more appropriate
-    @Override
-    public void restockFactory(FactoryRestockRequest request, StreamObserver<FactoryRestockReply> responseObserver) {
-        String quantity = "2";
-        System.out.println("Receiving Factory request for parts");
-        //removeParts(request.getText(), Integer.parseInt(quantity));
-        responseObserver.onNext(FactoryRestockReply.newBuilder().setText(quantity).build());
-        responseObserver.onCompleted();
-    }
-
+    //Takes in a number of messages from the factory client and returns a single message
+    //It takes all the parts that need restocking and removes them from the warehouse
+    //Since the factory can only store 2 parts at a time, the warehouse storage will only remove and send 2 parts at a time.
     public StreamObserver<FactoryRestockRequest> restockFactoryStream(StreamObserver<FactoryRestockReply> responseObserver){
         return new StreamObserver<FactoryRestockRequest>() {
             ArrayList<String> list = new ArrayList<>();
@@ -120,6 +113,9 @@ public class WarehouseServer extends LexingCoWarehouseServiceGrpc.LexingCoWareho
         };
     }
 
+    //repairStockFactoryStream takes in a number of messages, one for each part that needs to be repaired/replaced
+    //It returns a new message for each message it received and since replacement parts are sent straight from the warehouse
+    //removes 1 part from the warehouse stock.
     public StreamObserver<FactoryRestockRequest> repairStockFactoryStream(StreamObserver<FactoryRestockReply> responseObserver){
         return new StreamObserver<FactoryRestockRequest>() {
             ArrayList<String> list = new ArrayList<>();
@@ -149,6 +145,8 @@ public class WarehouseServer extends LexingCoWarehouseServiceGrpc.LexingCoWareho
         };
     }
 
+    //removeParts removes a certain number of specific parts from the warehouse depending on what messages were sent.
+    //If the warehouse stocks go low, it sends a request to the Ordering Service to buy more stock.
     private void removeParts(ArrayList<String> parts, int quantity) {
         int newQuantity = 0;
         String partsToOrder = "";
@@ -169,18 +167,11 @@ public class WarehouseServer extends LexingCoWarehouseServiceGrpc.LexingCoWareho
             System.out.println("Quantity of " + part + " in warehouse stock is " + newQuantity);
         }
         if(!partsToOrder.isEmpty()){
-            warehouseServiceListener.orderPartsServerStream(partsToOrder);
+            warehouseServiceClient.orderPartsServerStream(partsToOrder);
         }
     }
 
-    public void restockWarehouse(String part, int quantity){
-        for(HashMap warehouse : warehouseList){
-            if(warehouse.containsKey(part)){
-                warehouse.replace(part, quantity);
-            }
-        }
-    }
-
+    //A simple method that restocks the warehouse with new parts from the Ordering service.
     public void restockWarehouseWithPart(CarPart part){
         for(HashMap warehouse : warehouseList){
             if(warehouse.containsKey(part.getPartName())){

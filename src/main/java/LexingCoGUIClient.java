@@ -19,8 +19,11 @@ public class LexingCoGUIClient {
     private static final LexingCoFactoryServiceGrpc.LexingCoFactoryServiceBlockingStub blockStub = LexingCoFactoryServiceGrpc.newBlockingStub(channel);;
     private ServiceInfo factoryServiceInfo;
     private JPanel lexingCoGUI;
-    private JButton button1;
-    private JButton button2;
+    private JButton buildCarButton;
+    private JButton repairCarButton;
+    private JLabel lexingCoTextArea;
+    private JLabel buildCarTextArea;
+    private JLabel repairCarTextArea;
 
     public static void main(String[] args) {
         LexingCoGUIClient gui = new LexingCoGUIClient();
@@ -35,13 +38,17 @@ public class LexingCoGUIClient {
         String factory_service_type = "_factory._tcp.local.";
         discoverFactoryService(factory_service_type);
 
-        button1.addActionListener(new ActionListener() {
+        lexingCoTextArea.setText(" Welcome to LexingCo! \n" +
+                " Home of the Lexington Automobile, you may request a car to be built or send a car for in for repairs\n" +
+                        " from this application!");
+
+        buildCarButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 buildCar();
             }
         });
-        button2.addActionListener(new ActionListener() {
+        repairCarButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 repairCar();
@@ -49,6 +56,7 @@ public class LexingCoGUIClient {
         });
     }
 
+    //Method to discover the factory service
     private void discoverFactoryService(String service_type){
         try {
             // Create a JmDNS instance
@@ -85,15 +93,19 @@ public class LexingCoGUIClient {
         }
     }
 
+    //Simple RPC message to and from the factory service, returning and displaying a status message.
     private void buildCar() {
         BuildRequest request = BuildRequest.newBuilder().build();
         BuildReply reply = blockStub.buildCar(request);
+        buildCarTextArea.setText("Building car! " + reply.getText());
         System.out.println("Building car! " + reply.getText());
     }
 
+    //Simple RPC message to and from the factory service, returning and displaying a status message.
     private void repairCar() {
         RepairRequest request = RepairRequest.newBuilder().build();
         RepairReply reply = blockStub.repairCar(request);
-        System.out.println("Repairing Car " + reply.getText());
+        repairCarTextArea.setText("Repairing Car! " + reply.getText());
+        System.out.println("Repairing Car! " + reply.getText());
     }
 }

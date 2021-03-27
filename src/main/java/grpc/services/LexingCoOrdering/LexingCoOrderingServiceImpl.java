@@ -35,17 +35,12 @@ public final class LexingCoOrderingServiceImpl {
     java.lang.String[] descriptorData = {
       "\n\026LexingCoOrdering.proto\022\010LexingCo\"\'\n\027Wa" +
       "rehouseRestockRequest\022\014\n\004text\030\001 \001(\t\"!\n\021O" +
-      "rderRestockReply\022\014\n\004text\030\002 \001(\t2\251\002\n\027Lexin" +
-      "gCoOrderingService\022N\n\norderStock\022!.Lexin" +
-      "gCo.WarehouseRestockRequest\032\033.LexingCo.O" +
-      "rderRestockReply\"\000\022\\\n\026orderStockServerSt" +
-      "ream\022!.LexingCo.WarehouseRestockRequest\032" +
-      "\033.LexingCo.OrderRestockReply\"\0000\001\022`\n\032orde" +
-      "rRepairStockBiDiStream\022!.LexingCo.Wareho" +
-      "useRestockRequest\032\033.LexingCo.OrderRestoc" +
-      "kReply\"\0000\001B?\n\036grpc.services.LexingCoOrde" +
-      "ringB\033LexingCoOrderingServiceImplP\001b\006pro" +
-      "to3"
+      "rderRestockReply\022\014\n\004text\030\002 \001(\t2w\n\027Lexing" +
+      "CoOrderingService\022\\\n\026orderStockServerStr" +
+      "eam\022!.LexingCo.WarehouseRestockRequest\032\033" +
+      ".LexingCo.OrderRestockReply\"\0000\001B?\n\036grpc." +
+      "services.LexingCoOrderingB\033LexingCoOrder" +
+      "ingServiceImplP\001b\006proto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
