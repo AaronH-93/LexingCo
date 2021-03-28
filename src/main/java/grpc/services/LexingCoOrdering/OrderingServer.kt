@@ -57,11 +57,11 @@ class OrderingServer : LexingCoOrderingServiceImplBase() {
         val quantity = "5";
         var forked = Context.current().fork()
         var old = forked.attach()
-        var requestList = request.text.split("\n").toTypedArray()
-        var test = requestList.copyOf(requestList.size - 1)
+        var preFilteredRequestList = request.text.split("\n").toTypedArray()
+        var partsList = preFilteredRequestList.copyOf(preFilteredRequestList.size - 1)
 
         try {
-            for (part in test) {
+            for (part in partsList) {
                 println("Ordering $quantity new stock of $part")
                 responseObserver.onNext(OrderRestockReply.newBuilder().setText("$part\n$quantity").build())
             }

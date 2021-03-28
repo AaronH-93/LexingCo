@@ -4,18 +4,18 @@
 package grpc.services.LexingCoWarehouse;
 
 /**
- * Protobuf type {@code LexingCo.FactoryRestockRequest}
+ * Protobuf type {@code LexingCo.RestockRequest}
  */
-public  final class FactoryRestockRequest extends
+public  final class RestockRequest extends
     com.google.protobuf.GeneratedMessageV3 implements
-    // @@protoc_insertion_point(message_implements:LexingCo.FactoryRestockRequest)
-    FactoryRestockRequestOrBuilder {
+    // @@protoc_insertion_point(message_implements:LexingCo.RestockRequest)
+    RestockRequestOrBuilder {
 private static final long serialVersionUID = 0L;
-  // Use FactoryRestockRequest.newBuilder() to construct.
-  private FactoryRestockRequest(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+  // Use RestockRequest.newBuilder() to construct.
+  private RestockRequest(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
     super(builder);
   }
-  private FactoryRestockRequest() {
+  private RestockRequest() {
     text_ = "";
   }
 
@@ -24,7 +24,7 @@ private static final long serialVersionUID = 0L;
   getUnknownFields() {
     return this.unknownFields;
   }
-  private FactoryRestockRequest(
+  private RestockRequest(
       com.google.protobuf.CodedInputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
@@ -70,15 +70,15 @@ private static final long serialVersionUID = 0L;
   }
   public static final com.google.protobuf.Descriptors.Descriptor
       getDescriptor() {
-    return grpc.services.LexingCoWarehouse.LexingCoWarehouseServiceImpl.internal_static_LexingCo_FactoryRestockRequest_descriptor;
+    return grpc.services.LexingCoWarehouse.LexingCoWarehouseServiceImpl.internal_static_LexingCo_RestockRequest_descriptor;
   }
 
   @java.lang.Override
   protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internalGetFieldAccessorTable() {
-    return grpc.services.LexingCoWarehouse.LexingCoWarehouseServiceImpl.internal_static_LexingCo_FactoryRestockRequest_fieldAccessorTable
+    return grpc.services.LexingCoWarehouse.LexingCoWarehouseServiceImpl.internal_static_LexingCo_RestockRequest_fieldAccessorTable
         .ensureFieldAccessorsInitialized(
-            grpc.services.LexingCoWarehouse.FactoryRestockRequest.class, grpc.services.LexingCoWarehouse.FactoryRestockRequest.Builder.class);
+            grpc.services.LexingCoWarehouse.RestockRequest.class, grpc.services.LexingCoWarehouse.RestockRequest.Builder.class);
   }
 
   public static final int TEXT_FIELD_NUMBER = 1;
@@ -154,10 +154,10 @@ private static final long serialVersionUID = 0L;
     if (obj == this) {
      return true;
     }
-    if (!(obj instanceof grpc.services.LexingCoWarehouse.FactoryRestockRequest)) {
+    if (!(obj instanceof grpc.services.LexingCoWarehouse.RestockRequest)) {
       return super.equals(obj);
     }
-    grpc.services.LexingCoWarehouse.FactoryRestockRequest other = (grpc.services.LexingCoWarehouse.FactoryRestockRequest) obj;
+    grpc.services.LexingCoWarehouse.RestockRequest other = (grpc.services.LexingCoWarehouse.RestockRequest) obj;
 
     boolean result = true;
     result = result && getText()
@@ -180,69 +180,69 @@ private static final long serialVersionUID = 0L;
     return hash;
   }
 
-  public static grpc.services.LexingCoWarehouse.FactoryRestockRequest parseFrom(
+  public static grpc.services.LexingCoWarehouse.RestockRequest parseFrom(
       java.nio.ByteBuffer data)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data);
   }
-  public static grpc.services.LexingCoWarehouse.FactoryRestockRequest parseFrom(
+  public static grpc.services.LexingCoWarehouse.RestockRequest parseFrom(
       java.nio.ByteBuffer data,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data, extensionRegistry);
   }
-  public static grpc.services.LexingCoWarehouse.FactoryRestockRequest parseFrom(
+  public static grpc.services.LexingCoWarehouse.RestockRequest parseFrom(
       com.google.protobuf.ByteString data)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data);
   }
-  public static grpc.services.LexingCoWarehouse.FactoryRestockRequest parseFrom(
+  public static grpc.services.LexingCoWarehouse.RestockRequest parseFrom(
       com.google.protobuf.ByteString data,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data, extensionRegistry);
   }
-  public static grpc.services.LexingCoWarehouse.FactoryRestockRequest parseFrom(byte[] data)
+  public static grpc.services.LexingCoWarehouse.RestockRequest parseFrom(byte[] data)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data);
   }
-  public static grpc.services.LexingCoWarehouse.FactoryRestockRequest parseFrom(
+  public static grpc.services.LexingCoWarehouse.RestockRequest parseFrom(
       byte[] data,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data, extensionRegistry);
   }
-  public static grpc.services.LexingCoWarehouse.FactoryRestockRequest parseFrom(java.io.InputStream input)
+  public static grpc.services.LexingCoWarehouse.RestockRequest parseFrom(java.io.InputStream input)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseWithIOException(PARSER, input);
   }
-  public static grpc.services.LexingCoWarehouse.FactoryRestockRequest parseFrom(
+  public static grpc.services.LexingCoWarehouse.RestockRequest parseFrom(
       java.io.InputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseWithIOException(PARSER, input, extensionRegistry);
   }
-  public static grpc.services.LexingCoWarehouse.FactoryRestockRequest parseDelimitedFrom(java.io.InputStream input)
+  public static grpc.services.LexingCoWarehouse.RestockRequest parseDelimitedFrom(java.io.InputStream input)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseDelimitedWithIOException(PARSER, input);
   }
-  public static grpc.services.LexingCoWarehouse.FactoryRestockRequest parseDelimitedFrom(
+  public static grpc.services.LexingCoWarehouse.RestockRequest parseDelimitedFrom(
       java.io.InputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
   }
-  public static grpc.services.LexingCoWarehouse.FactoryRestockRequest parseFrom(
+  public static grpc.services.LexingCoWarehouse.RestockRequest parseFrom(
       com.google.protobuf.CodedInputStream input)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseWithIOException(PARSER, input);
   }
-  public static grpc.services.LexingCoWarehouse.FactoryRestockRequest parseFrom(
+  public static grpc.services.LexingCoWarehouse.RestockRequest parseFrom(
       com.google.protobuf.CodedInputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws java.io.IOException {
@@ -255,7 +255,7 @@ private static final long serialVersionUID = 0L;
   public static Builder newBuilder() {
     return DEFAULT_INSTANCE.toBuilder();
   }
-  public static Builder newBuilder(grpc.services.LexingCoWarehouse.FactoryRestockRequest prototype) {
+  public static Builder newBuilder(grpc.services.LexingCoWarehouse.RestockRequest prototype) {
     return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
   }
   @java.lang.Override
@@ -271,26 +271,26 @@ private static final long serialVersionUID = 0L;
     return builder;
   }
   /**
-   * Protobuf type {@code LexingCo.FactoryRestockRequest}
+   * Protobuf type {@code LexingCo.RestockRequest}
    */
   public static final class Builder extends
       com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-      // @@protoc_insertion_point(builder_implements:LexingCo.FactoryRestockRequest)
-      grpc.services.LexingCoWarehouse.FactoryRestockRequestOrBuilder {
+      // @@protoc_insertion_point(builder_implements:LexingCo.RestockRequest)
+      grpc.services.LexingCoWarehouse.RestockRequestOrBuilder {
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return grpc.services.LexingCoWarehouse.LexingCoWarehouseServiceImpl.internal_static_LexingCo_FactoryRestockRequest_descriptor;
+      return grpc.services.LexingCoWarehouse.LexingCoWarehouseServiceImpl.internal_static_LexingCo_RestockRequest_descriptor;
     }
 
     @java.lang.Override
     protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return grpc.services.LexingCoWarehouse.LexingCoWarehouseServiceImpl.internal_static_LexingCo_FactoryRestockRequest_fieldAccessorTable
+      return grpc.services.LexingCoWarehouse.LexingCoWarehouseServiceImpl.internal_static_LexingCo_RestockRequest_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              grpc.services.LexingCoWarehouse.FactoryRestockRequest.class, grpc.services.LexingCoWarehouse.FactoryRestockRequest.Builder.class);
+              grpc.services.LexingCoWarehouse.RestockRequest.class, grpc.services.LexingCoWarehouse.RestockRequest.Builder.class);
     }
 
-    // Construct using grpc.services.LexingCoWarehouse.FactoryRestockRequest.newBuilder()
+    // Construct using grpc.services.LexingCoWarehouse.RestockRequest.newBuilder()
     private Builder() {
       maybeForceBuilderInitialization();
     }
@@ -316,17 +316,17 @@ private static final long serialVersionUID = 0L;
     @java.lang.Override
     public com.google.protobuf.Descriptors.Descriptor
         getDescriptorForType() {
-      return grpc.services.LexingCoWarehouse.LexingCoWarehouseServiceImpl.internal_static_LexingCo_FactoryRestockRequest_descriptor;
+      return grpc.services.LexingCoWarehouse.LexingCoWarehouseServiceImpl.internal_static_LexingCo_RestockRequest_descriptor;
     }
 
     @java.lang.Override
-    public grpc.services.LexingCoWarehouse.FactoryRestockRequest getDefaultInstanceForType() {
-      return grpc.services.LexingCoWarehouse.FactoryRestockRequest.getDefaultInstance();
+    public grpc.services.LexingCoWarehouse.RestockRequest getDefaultInstanceForType() {
+      return grpc.services.LexingCoWarehouse.RestockRequest.getDefaultInstance();
     }
 
     @java.lang.Override
-    public grpc.services.LexingCoWarehouse.FactoryRestockRequest build() {
-      grpc.services.LexingCoWarehouse.FactoryRestockRequest result = buildPartial();
+    public grpc.services.LexingCoWarehouse.RestockRequest build() {
+      grpc.services.LexingCoWarehouse.RestockRequest result = buildPartial();
       if (!result.isInitialized()) {
         throw newUninitializedMessageException(result);
       }
@@ -334,8 +334,8 @@ private static final long serialVersionUID = 0L;
     }
 
     @java.lang.Override
-    public grpc.services.LexingCoWarehouse.FactoryRestockRequest buildPartial() {
-      grpc.services.LexingCoWarehouse.FactoryRestockRequest result = new grpc.services.LexingCoWarehouse.FactoryRestockRequest(this);
+    public grpc.services.LexingCoWarehouse.RestockRequest buildPartial() {
+      grpc.services.LexingCoWarehouse.RestockRequest result = new grpc.services.LexingCoWarehouse.RestockRequest(this);
       result.text_ = text_;
       onBuilt();
       return result;
@@ -375,16 +375,16 @@ private static final long serialVersionUID = 0L;
     }
     @java.lang.Override
     public Builder mergeFrom(com.google.protobuf.Message other) {
-      if (other instanceof grpc.services.LexingCoWarehouse.FactoryRestockRequest) {
-        return mergeFrom((grpc.services.LexingCoWarehouse.FactoryRestockRequest)other);
+      if (other instanceof grpc.services.LexingCoWarehouse.RestockRequest) {
+        return mergeFrom((grpc.services.LexingCoWarehouse.RestockRequest)other);
       } else {
         super.mergeFrom(other);
         return this;
       }
     }
 
-    public Builder mergeFrom(grpc.services.LexingCoWarehouse.FactoryRestockRequest other) {
-      if (other == grpc.services.LexingCoWarehouse.FactoryRestockRequest.getDefaultInstance()) return this;
+    public Builder mergeFrom(grpc.services.LexingCoWarehouse.RestockRequest other) {
+      if (other == grpc.services.LexingCoWarehouse.RestockRequest.getDefaultInstance()) return this;
       if (!other.getText().isEmpty()) {
         text_ = other.text_;
         onChanged();
@@ -404,11 +404,11 @@ private static final long serialVersionUID = 0L;
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      grpc.services.LexingCoWarehouse.FactoryRestockRequest parsedMessage = null;
+      grpc.services.LexingCoWarehouse.RestockRequest parsedMessage = null;
       try {
         parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
       } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        parsedMessage = (grpc.services.LexingCoWarehouse.FactoryRestockRequest) e.getUnfinishedMessage();
+        parsedMessage = (grpc.services.LexingCoWarehouse.RestockRequest) e.getUnfinishedMessage();
         throw e.unwrapIOException();
       } finally {
         if (parsedMessage != null) {
@@ -499,41 +499,41 @@ private static final long serialVersionUID = 0L;
     }
 
 
-    // @@protoc_insertion_point(builder_scope:LexingCo.FactoryRestockRequest)
+    // @@protoc_insertion_point(builder_scope:LexingCo.RestockRequest)
   }
 
-  // @@protoc_insertion_point(class_scope:LexingCo.FactoryRestockRequest)
-  private static final grpc.services.LexingCoWarehouse.FactoryRestockRequest DEFAULT_INSTANCE;
+  // @@protoc_insertion_point(class_scope:LexingCo.RestockRequest)
+  private static final grpc.services.LexingCoWarehouse.RestockRequest DEFAULT_INSTANCE;
   static {
-    DEFAULT_INSTANCE = new grpc.services.LexingCoWarehouse.FactoryRestockRequest();
+    DEFAULT_INSTANCE = new grpc.services.LexingCoWarehouse.RestockRequest();
   }
 
-  public static grpc.services.LexingCoWarehouse.FactoryRestockRequest getDefaultInstance() {
+  public static grpc.services.LexingCoWarehouse.RestockRequest getDefaultInstance() {
     return DEFAULT_INSTANCE;
   }
 
-  private static final com.google.protobuf.Parser<FactoryRestockRequest>
-      PARSER = new com.google.protobuf.AbstractParser<FactoryRestockRequest>() {
+  private static final com.google.protobuf.Parser<RestockRequest>
+      PARSER = new com.google.protobuf.AbstractParser<RestockRequest>() {
     @java.lang.Override
-    public FactoryRestockRequest parsePartialFrom(
+    public RestockRequest parsePartialFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return new FactoryRestockRequest(input, extensionRegistry);
+      return new RestockRequest(input, extensionRegistry);
     }
   };
 
-  public static com.google.protobuf.Parser<FactoryRestockRequest> parser() {
+  public static com.google.protobuf.Parser<RestockRequest> parser() {
     return PARSER;
   }
 
   @java.lang.Override
-  public com.google.protobuf.Parser<FactoryRestockRequest> getParserForType() {
+  public com.google.protobuf.Parser<RestockRequest> getParserForType() {
     return PARSER;
   }
 
   @java.lang.Override
-  public grpc.services.LexingCoWarehouse.FactoryRestockRequest getDefaultInstanceForType() {
+  public grpc.services.LexingCoWarehouse.RestockRequest getDefaultInstanceForType() {
     return DEFAULT_INSTANCE;
   }
 

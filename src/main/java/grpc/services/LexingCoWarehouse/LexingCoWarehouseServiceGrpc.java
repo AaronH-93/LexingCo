@@ -27,30 +27,30 @@ public final class LexingCoWarehouseServiceGrpc {
   public static final String SERVICE_NAME = "LexingCo.LexingCoWarehouseService";
 
   // Static method descriptors that strictly reflect the proto.
-  private static volatile io.grpc.MethodDescriptor<grpc.services.LexingCoWarehouse.FactoryRestockRequest,
-      grpc.services.LexingCoWarehouse.FactoryRestockReply> getRestockFactoryStreamMethod;
+  private static volatile io.grpc.MethodDescriptor<grpc.services.LexingCoWarehouse.RestockRequest,
+      grpc.services.LexingCoWarehouse.RestockReply> getRestockFactoryStreamMethod;
 
   @io.grpc.stub.annotations.RpcMethod(
       fullMethodName = SERVICE_NAME + '/' + "restockFactoryStream",
-      requestType = grpc.services.LexingCoWarehouse.FactoryRestockRequest.class,
-      responseType = grpc.services.LexingCoWarehouse.FactoryRestockReply.class,
+      requestType = grpc.services.LexingCoWarehouse.RestockRequest.class,
+      responseType = grpc.services.LexingCoWarehouse.RestockReply.class,
       methodType = io.grpc.MethodDescriptor.MethodType.CLIENT_STREAMING)
-  public static io.grpc.MethodDescriptor<grpc.services.LexingCoWarehouse.FactoryRestockRequest,
-      grpc.services.LexingCoWarehouse.FactoryRestockReply> getRestockFactoryStreamMethod() {
-    io.grpc.MethodDescriptor<grpc.services.LexingCoWarehouse.FactoryRestockRequest, grpc.services.LexingCoWarehouse.FactoryRestockReply> getRestockFactoryStreamMethod;
+  public static io.grpc.MethodDescriptor<grpc.services.LexingCoWarehouse.RestockRequest,
+      grpc.services.LexingCoWarehouse.RestockReply> getRestockFactoryStreamMethod() {
+    io.grpc.MethodDescriptor<grpc.services.LexingCoWarehouse.RestockRequest, grpc.services.LexingCoWarehouse.RestockReply> getRestockFactoryStreamMethod;
     if ((getRestockFactoryStreamMethod = LexingCoWarehouseServiceGrpc.getRestockFactoryStreamMethod) == null) {
       synchronized (LexingCoWarehouseServiceGrpc.class) {
         if ((getRestockFactoryStreamMethod = LexingCoWarehouseServiceGrpc.getRestockFactoryStreamMethod) == null) {
           LexingCoWarehouseServiceGrpc.getRestockFactoryStreamMethod = getRestockFactoryStreamMethod = 
-              io.grpc.MethodDescriptor.<grpc.services.LexingCoWarehouse.FactoryRestockRequest, grpc.services.LexingCoWarehouse.FactoryRestockReply>newBuilder()
+              io.grpc.MethodDescriptor.<grpc.services.LexingCoWarehouse.RestockRequest, grpc.services.LexingCoWarehouse.RestockReply>newBuilder()
               .setType(io.grpc.MethodDescriptor.MethodType.CLIENT_STREAMING)
               .setFullMethodName(generateFullMethodName(
                   "LexingCo.LexingCoWarehouseService", "restockFactoryStream"))
               .setSampledToLocalTracing(true)
               .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  grpc.services.LexingCoWarehouse.FactoryRestockRequest.getDefaultInstance()))
+                  grpc.services.LexingCoWarehouse.RestockRequest.getDefaultInstance()))
               .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  grpc.services.LexingCoWarehouse.FactoryRestockReply.getDefaultInstance()))
+                  grpc.services.LexingCoWarehouse.RestockReply.getDefaultInstance()))
                   .setSchemaDescriptor(new LexingCoWarehouseServiceMethodDescriptorSupplier("restockFactoryStream"))
                   .build();
           }
@@ -59,30 +59,30 @@ public final class LexingCoWarehouseServiceGrpc {
      return getRestockFactoryStreamMethod;
   }
 
-  private static volatile io.grpc.MethodDescriptor<grpc.services.LexingCoWarehouse.FactoryRestockRequest,
-      grpc.services.LexingCoWarehouse.FactoryRestockReply> getRepairStockFactoryStreamMethod;
+  private static volatile io.grpc.MethodDescriptor<grpc.services.LexingCoWarehouse.RestockRequest,
+      grpc.services.LexingCoWarehouse.RestockReply> getRepairStockFactoryStreamMethod;
 
   @io.grpc.stub.annotations.RpcMethod(
       fullMethodName = SERVICE_NAME + '/' + "repairStockFactoryStream",
-      requestType = grpc.services.LexingCoWarehouse.FactoryRestockRequest.class,
-      responseType = grpc.services.LexingCoWarehouse.FactoryRestockReply.class,
+      requestType = grpc.services.LexingCoWarehouse.RestockRequest.class,
+      responseType = grpc.services.LexingCoWarehouse.RestockReply.class,
       methodType = io.grpc.MethodDescriptor.MethodType.BIDI_STREAMING)
-  public static io.grpc.MethodDescriptor<grpc.services.LexingCoWarehouse.FactoryRestockRequest,
-      grpc.services.LexingCoWarehouse.FactoryRestockReply> getRepairStockFactoryStreamMethod() {
-    io.grpc.MethodDescriptor<grpc.services.LexingCoWarehouse.FactoryRestockRequest, grpc.services.LexingCoWarehouse.FactoryRestockReply> getRepairStockFactoryStreamMethod;
+  public static io.grpc.MethodDescriptor<grpc.services.LexingCoWarehouse.RestockRequest,
+      grpc.services.LexingCoWarehouse.RestockReply> getRepairStockFactoryStreamMethod() {
+    io.grpc.MethodDescriptor<grpc.services.LexingCoWarehouse.RestockRequest, grpc.services.LexingCoWarehouse.RestockReply> getRepairStockFactoryStreamMethod;
     if ((getRepairStockFactoryStreamMethod = LexingCoWarehouseServiceGrpc.getRepairStockFactoryStreamMethod) == null) {
       synchronized (LexingCoWarehouseServiceGrpc.class) {
         if ((getRepairStockFactoryStreamMethod = LexingCoWarehouseServiceGrpc.getRepairStockFactoryStreamMethod) == null) {
           LexingCoWarehouseServiceGrpc.getRepairStockFactoryStreamMethod = getRepairStockFactoryStreamMethod = 
-              io.grpc.MethodDescriptor.<grpc.services.LexingCoWarehouse.FactoryRestockRequest, grpc.services.LexingCoWarehouse.FactoryRestockReply>newBuilder()
+              io.grpc.MethodDescriptor.<grpc.services.LexingCoWarehouse.RestockRequest, grpc.services.LexingCoWarehouse.RestockReply>newBuilder()
               .setType(io.grpc.MethodDescriptor.MethodType.BIDI_STREAMING)
               .setFullMethodName(generateFullMethodName(
                   "LexingCo.LexingCoWarehouseService", "repairStockFactoryStream"))
               .setSampledToLocalTracing(true)
               .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  grpc.services.LexingCoWarehouse.FactoryRestockRequest.getDefaultInstance()))
+                  grpc.services.LexingCoWarehouse.RestockRequest.getDefaultInstance()))
               .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  grpc.services.LexingCoWarehouse.FactoryRestockReply.getDefaultInstance()))
+                  grpc.services.LexingCoWarehouse.RestockReply.getDefaultInstance()))
                   .setSchemaDescriptor(new LexingCoWarehouseServiceMethodDescriptorSupplier("repairStockFactoryStream"))
                   .build();
           }
@@ -120,15 +120,15 @@ public final class LexingCoWarehouseServiceGrpc {
 
     /**
      */
-    public io.grpc.stub.StreamObserver<grpc.services.LexingCoWarehouse.FactoryRestockRequest> restockFactoryStream(
-        io.grpc.stub.StreamObserver<grpc.services.LexingCoWarehouse.FactoryRestockReply> responseObserver) {
+    public io.grpc.stub.StreamObserver<grpc.services.LexingCoWarehouse.RestockRequest> restockFactoryStream(
+        io.grpc.stub.StreamObserver<grpc.services.LexingCoWarehouse.RestockReply> responseObserver) {
       return asyncUnimplementedStreamingCall(getRestockFactoryStreamMethod(), responseObserver);
     }
 
     /**
      */
-    public io.grpc.stub.StreamObserver<grpc.services.LexingCoWarehouse.FactoryRestockRequest> repairStockFactoryStream(
-        io.grpc.stub.StreamObserver<grpc.services.LexingCoWarehouse.FactoryRestockReply> responseObserver) {
+    public io.grpc.stub.StreamObserver<grpc.services.LexingCoWarehouse.RestockRequest> repairStockFactoryStream(
+        io.grpc.stub.StreamObserver<grpc.services.LexingCoWarehouse.RestockReply> responseObserver) {
       return asyncUnimplementedStreamingCall(getRepairStockFactoryStreamMethod(), responseObserver);
     }
 
@@ -138,15 +138,15 @@ public final class LexingCoWarehouseServiceGrpc {
             getRestockFactoryStreamMethod(),
             asyncClientStreamingCall(
               new MethodHandlers<
-                grpc.services.LexingCoWarehouse.FactoryRestockRequest,
-                grpc.services.LexingCoWarehouse.FactoryRestockReply>(
+                grpc.services.LexingCoWarehouse.RestockRequest,
+                grpc.services.LexingCoWarehouse.RestockReply>(
                   this, METHODID_RESTOCK_FACTORY_STREAM)))
           .addMethod(
             getRepairStockFactoryStreamMethod(),
             asyncBidiStreamingCall(
               new MethodHandlers<
-                grpc.services.LexingCoWarehouse.FactoryRestockRequest,
-                grpc.services.LexingCoWarehouse.FactoryRestockReply>(
+                grpc.services.LexingCoWarehouse.RestockRequest,
+                grpc.services.LexingCoWarehouse.RestockReply>(
                   this, METHODID_REPAIR_STOCK_FACTORY_STREAM)))
           .build();
     }
@@ -172,16 +172,16 @@ public final class LexingCoWarehouseServiceGrpc {
 
     /**
      */
-    public io.grpc.stub.StreamObserver<grpc.services.LexingCoWarehouse.FactoryRestockRequest> restockFactoryStream(
-        io.grpc.stub.StreamObserver<grpc.services.LexingCoWarehouse.FactoryRestockReply> responseObserver) {
+    public io.grpc.stub.StreamObserver<grpc.services.LexingCoWarehouse.RestockRequest> restockFactoryStream(
+        io.grpc.stub.StreamObserver<grpc.services.LexingCoWarehouse.RestockReply> responseObserver) {
       return asyncClientStreamingCall(
           getChannel().newCall(getRestockFactoryStreamMethod(), getCallOptions()), responseObserver);
     }
 
     /**
      */
-    public io.grpc.stub.StreamObserver<grpc.services.LexingCoWarehouse.FactoryRestockRequest> repairStockFactoryStream(
-        io.grpc.stub.StreamObserver<grpc.services.LexingCoWarehouse.FactoryRestockReply> responseObserver) {
+    public io.grpc.stub.StreamObserver<grpc.services.LexingCoWarehouse.RestockRequest> repairStockFactoryStream(
+        io.grpc.stub.StreamObserver<grpc.services.LexingCoWarehouse.RestockReply> responseObserver) {
       return asyncBidiStreamingCall(
           getChannel().newCall(getRepairStockFactoryStreamMethod(), getCallOptions()), responseObserver);
     }
@@ -257,10 +257,10 @@ public final class LexingCoWarehouseServiceGrpc {
       switch (methodId) {
         case METHODID_RESTOCK_FACTORY_STREAM:
           return (io.grpc.stub.StreamObserver<Req>) serviceImpl.restockFactoryStream(
-              (io.grpc.stub.StreamObserver<grpc.services.LexingCoWarehouse.FactoryRestockReply>) responseObserver);
+              (io.grpc.stub.StreamObserver<grpc.services.LexingCoWarehouse.RestockReply>) responseObserver);
         case METHODID_REPAIR_STOCK_FACTORY_STREAM:
           return (io.grpc.stub.StreamObserver<Req>) serviceImpl.repairStockFactoryStream(
-              (io.grpc.stub.StreamObserver<grpc.services.LexingCoWarehouse.FactoryRestockReply>) responseObserver);
+              (io.grpc.stub.StreamObserver<grpc.services.LexingCoWarehouse.RestockReply>) responseObserver);
         default:
           throw new AssertionError();
       }

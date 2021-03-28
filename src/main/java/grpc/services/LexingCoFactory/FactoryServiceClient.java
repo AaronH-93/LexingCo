@@ -24,7 +24,7 @@ public class FactoryServiceClient extends FactoryServer implements ServiceListen
 
     public static void main(String[] args) {
         try {
-            //Creats a JmDNS instance of the warehouse service type.
+            //Creates a JmDNS instance of the warehouse service type.
             JmDNS jmdns = JmDNS.create(InetAddress.getLocalHost());
             String service_type = "_warehouse._tcp.local.";
             jmdns.addServiceListener(service_type, FACTORY_SERVICE_CLIENT);
@@ -47,9 +47,9 @@ public class FactoryServiceClient extends FactoryServer implements ServiceListen
     public void requestPartsStream(ArrayList<String> parts){
         asyncStub = LexingCoWarehouseServiceGrpc.newStub(channel);
 
-        StreamObserver<FactoryRestockReply> responseObserver = new StreamObserver<FactoryRestockReply>() {
+        StreamObserver<RestockReply> responseObserver = new StreamObserver<RestockReply>() {
             @Override
-            public void onNext(FactoryRestockReply restockReply) {
+            public void onNext(RestockReply restockReply) {
                 System.out.println("Receiving new stock of " + restockReply.getText());
             }
 
@@ -64,10 +64,10 @@ public class FactoryServiceClient extends FactoryServer implements ServiceListen
             }
         };
 
-        StreamObserver<FactoryRestockRequest> requestObserver = asyncStub.restockFactoryStream(responseObserver);
+        StreamObserver<RestockRequest> requestObserver = asyncStub.restockFactoryStream(responseObserver);
         try{
             for(String part : parts){
-                requestObserver.onNext(FactoryRestockRequest.newBuilder().setText(part).build());
+                requestObserver.onNext(RestockRequest.newBuilder().setText(part).build());
                 restockFactory(part, 2);
                 Thread.sleep(500);
             }
@@ -85,10 +85,10 @@ public class FactoryServiceClient extends FactoryServer implements ServiceListen
     public void repairPartsBiDiStream(ArrayList<String> parts) {
         asyncStub = LexingCoWarehouseServiceGrpc.newStub(channel);
 
-        StreamObserver<FactoryRestockReply> responseObserver = new StreamObserver<FactoryRestockReply>() {
+        StreamObserver<RestockReply> responseObserver = new StreamObserver<RestockReply>() {
 
             @Override
-            public void onNext(FactoryRestockReply factoryRestockReply) {
+            public void onNext(RestockReply factoryRestockReply) {
                 System.out.println("Replacement parts for: " + factoryRestockReply.getText() + "\nsourced.");
             }
 
@@ -103,10 +103,10 @@ public class FactoryServiceClient extends FactoryServer implements ServiceListen
             }
         };
 
-        StreamObserver<FactoryRestockRequest> requestObserver = asyncStub.repairStockFactoryStream(responseObserver);
+        StreamObserver<RestockRequest> requestObserver = asyncStub.repairStockFactoryStream(responseObserver);
         try{
             for(String part : parts){
-                requestObserver.onNext(FactoryRestockRequest.newBuilder().setText(part).build());
+                requestObserver.onNext(RestockRequest.newBuilder().setText(part).build());
             }
             requestObserver.onCompleted();
             Thread.sleep(500);

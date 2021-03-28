@@ -15,15 +15,15 @@ public final class LexingCoWarehouseServiceImpl {
         (com.google.protobuf.ExtensionRegistryLite) registry);
   }
   static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_LexingCo_FactoryRestockRequest_descriptor;
+    internal_static_LexingCo_RestockRequest_descriptor;
   static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_LexingCo_FactoryRestockRequest_fieldAccessorTable;
+      internal_static_LexingCo_RestockRequest_fieldAccessorTable;
   static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_LexingCo_FactoryRestockReply_descriptor;
+    internal_static_LexingCo_RestockReply_descriptor;
   static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_LexingCo_FactoryRestockReply_fieldAccessorTable;
+      internal_static_LexingCo_RestockReply_fieldAccessorTable;
 
   public static com.google.protobuf.Descriptors.FileDescriptor
       getDescriptor() {
@@ -33,17 +33,16 @@ public final class LexingCoWarehouseServiceImpl {
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n\027LexingCoWarehouse.proto\022\010LexingCo\"%\n\025F" +
-      "actoryRestockRequest\022\014\n\004text\030\001 \001(\t\"#\n\023Fa" +
-      "ctoryRestockReply\022\014\n\004text\030\002 \001(\t2\330\001\n\030Lexi" +
-      "ngCoWarehouseService\022Z\n\024restockFactorySt" +
-      "ream\022\037.LexingCo.FactoryRestockRequest\032\035." +
-      "LexingCo.FactoryRestockReply\"\000(\001\022`\n\030repa" +
-      "irStockFactoryStream\022\037.LexingCo.FactoryR" +
-      "estockRequest\032\035.LexingCo.FactoryRestockR" +
-      "eply\"\000(\0010\001BA\n\037grpc.services.LexingCoWare" +
-      "houseB\034LexingCoWarehouseServiceImplP\001b\006p" +
-      "roto3"
+      "\n\027LexingCoWarehouse.proto\022\010LexingCo\"\036\n\016R" +
+      "estockRequest\022\014\n\004text\030\001 \001(\t\"\034\n\014RestockRe" +
+      "ply\022\014\n\004text\030\002 \001(\t2\274\001\n\030LexingCoWarehouseS" +
+      "ervice\022L\n\024restockFactoryStream\022\030.LexingC" +
+      "o.RestockRequest\032\026.LexingCo.RestockReply" +
+      "\"\000(\001\022R\n\030repairStockFactoryStream\022\030.Lexin" +
+      "gCo.RestockRequest\032\026.LexingCo.RestockRep" +
+      "ly\"\000(\0010\001BA\n\037grpc.services.LexingCoWareho" +
+      "useB\034LexingCoWarehouseServiceImplP\001b\006pro" +
+      "to3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -57,17 +56,17 @@ public final class LexingCoWarehouseServiceImpl {
       .internalBuildGeneratedFileFrom(descriptorData,
         new com.google.protobuf.Descriptors.FileDescriptor[] {
         }, assigner);
-    internal_static_LexingCo_FactoryRestockRequest_descriptor =
+    internal_static_LexingCo_RestockRequest_descriptor =
       getDescriptor().getMessageTypes().get(0);
-    internal_static_LexingCo_FactoryRestockRequest_fieldAccessorTable = new
+    internal_static_LexingCo_RestockRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_LexingCo_FactoryRestockRequest_descriptor,
+        internal_static_LexingCo_RestockRequest_descriptor,
         new java.lang.String[] { "Text", });
-    internal_static_LexingCo_FactoryRestockReply_descriptor =
+    internal_static_LexingCo_RestockReply_descriptor =
       getDescriptor().getMessageTypes().get(1);
-    internal_static_LexingCo_FactoryRestockReply_fieldAccessorTable = new
+    internal_static_LexingCo_RestockReply_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_LexingCo_FactoryRestockReply_descriptor,
+        internal_static_LexingCo_RestockReply_descriptor,
         new java.lang.String[] { "Text", });
   }
 

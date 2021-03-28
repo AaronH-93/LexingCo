@@ -40,9 +40,9 @@ public class WarehouseServiceClient extends WarehouseServer implements ServiceLi
     @Override
     public void serviceResolved(ServiceEvent event) { System.out.println("Service resolved: " + event.getInfo()); }
 
-    //orderPartsServerStream is a server side rpc stream that takes in a single message and returns multiple
-    //It takes the message containing the parts it needs to order and splits it into an array
-    //and creates a new car part from each message, which is added back to the warehouse.
+    //orderStockServerStream in the orderPartsServerStream function is a server side rpc stream that takes
+    //in a single message and returns multiple it takes the message containing the parts it needs to order
+    //and splits it into an array and creates a new car part from each message, which is added back to the warehouse.
     public void orderPartsServerStream(String partsToOrder){
         asyncStub = LexingCoOrderingServiceGrpc.newStub(channel);
         WarehouseRestockRequest request = WarehouseRestockRequest.newBuilder().setText(partsToOrder).build();

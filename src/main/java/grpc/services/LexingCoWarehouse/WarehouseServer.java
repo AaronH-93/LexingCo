@@ -84,12 +84,12 @@ public class WarehouseServer extends LexingCoWarehouseServiceGrpc.LexingCoWareho
     //Takes in a number of messages from the factory client and returns a single message
     //It takes all the parts that need restocking and removes them from the warehouse
     //Since the factory can only store 2 parts at a time, the warehouse storage will only remove and send 2 parts at a time.
-    public StreamObserver<FactoryRestockRequest> restockFactoryStream(StreamObserver<FactoryRestockReply> responseObserver){
-        return new StreamObserver<FactoryRestockRequest>() {
+    public StreamObserver<RestockRequest> restockFactoryStream(StreamObserver<RestockReply> responseObserver){
+        return new StreamObserver<RestockRequest>() {
             ArrayList<String> list = new ArrayList<>();
             String quantity = "2";
             @Override
-            public void onNext(FactoryRestockRequest restockRequest) {
+            public void onNext(RestockRequest restockRequest) {
                 System.out.println("Receiving Factory request for: " + restockRequest.getText());
                 list.add(restockRequest.getText());
             }
@@ -105,7 +105,7 @@ public class WarehouseServer extends LexingCoWarehouseServiceGrpc.LexingCoWareho
                 for(String part : list){
                     response += "\n " + part;
                 }
-                FactoryRestockReply reply = FactoryRestockReply.newBuilder().setText(response).build();
+                RestockReply reply = RestockReply.newBuilder().setText(response).build();
                 responseObserver.onNext(reply);
                 responseObserver.onCompleted();
                 removeParts(list, Integer.parseInt(quantity));
@@ -116,12 +116,12 @@ public class WarehouseServer extends LexingCoWarehouseServiceGrpc.LexingCoWareho
     //repairStockFactoryStream takes in a number of messages, one for each part that needs to be repaired/replaced
     //It returns a new message for each message it received and since replacement parts are sent straight from the warehouse
     //removes 1 part from the warehouse stock.
-    public StreamObserver<FactoryRestockRequest> repairStockFactoryStream(StreamObserver<FactoryRestockReply> responseObserver){
-        return new StreamObserver<FactoryRestockRequest>() {
+    public StreamObserver<RestockRequest> repairStockFactoryStream(StreamObserver<RestockReply> responseObserver){
+        return new StreamObserver<RestockRequest>() {
             ArrayList<String> list = new ArrayList<>();
             String quantity = "1";
             @Override
-            public void onNext(FactoryRestockRequest restockRequest) {
+            public void onNext(RestockRequest restockRequest) {
                 System.out.println("Receiving repair request for: " + restockRequest.getText());
                 list.add(restockRequest.getText());
             }
@@ -137,7 +137,7 @@ public class WarehouseServer extends LexingCoWarehouseServiceGrpc.LexingCoWareho
                 for(String part : list){
                     response += "\n " + part;
                 }
-                FactoryRestockReply reply = FactoryRestockReply.newBuilder().setText(response).build();
+                RestockReply reply = RestockReply.newBuilder().setText(response).build();
                 responseObserver.onNext(reply);
                 responseObserver.onCompleted();
                 removeParts(list, Integer.parseInt(quantity));
